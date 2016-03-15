@@ -1,0 +1,88 @@
+<div class="modal fade" id="user_addRelatedIndividualModal">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog vertical-align-center width-60vw">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<fmt:message key="ontology.details.add.related.individual" />
+					</h4> 
+				</div>
+				<div class="modal-body">
+					<!-- <p>
+						<fmt:message key="ontology.details.individual.annotation.selector.select.message" />
+					</p> -->
+					
+					<input name="user_isDifferent" id="user_isDifferent" type="checkbox" class="display-none"/>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="panel panel-default">
+						        <div class="panel-heading">
+						             <h4 class="panel-title">
+								        <a data-toggle="collapse" data-target="#user_classSelectorJsTreePanel" href="#user_classSelectorJsTreePanel">
+							          		<fmt:message key="ontology.details.class.selector"/>
+								        </a>
+						      		</h4>
+						        </div>
+						        
+						        <div id="user_classSelectorJsTreePanel" class="panel-collapse collapse in modal-jstree modal-jstree-custom">
+						            <div id="user_classSelectorModalJsTree" class="panel-body"></div>
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-sm-6">
+							<div class="panel panel-default" id="user_idvSelectorPanel">
+						        <div class="panel-heading">
+						             <h4 class="panel-title">
+								        <a data-toggle="collapse" data-target="#user_idvSelectorJsTreePanel" href="#user_idvSelectorJsTreePanel">
+							          		<fmt:message key="ontology.details.individual.selector"/>
+								        </a>
+						      		</h4>
+						        </div>
+						        
+						        <div id="user_idvSelectorJsTreePanel" class="panel-collapse collapse in modal-jstree">
+						        	<form class="navbar-form" onsubmit="return false;">
+						        		<input type="text" class="form-control full-width" id="user_idvSelectorSearch" placeholder="Search individuals...">
+						        	</form>
+						            <div id="user_idvSelectorJsTree" class="panel-body jstree jstree-3 jstree-default col-sm-11" role="tree">
+						            	<ul class="jstree-container-ul jstree-children" role="group" id="user_idvsUL">
+            							</ul>
+						            </div>
+						        </div>
+						        
+						        <!-- page paginator -->
+						        <div class="panel-footer text-center visibility-hidden" id="user_idvPaginationDiv">
+						        	<ul id="user_idvPaginationUL" class="pointer"></ul>
+						        	<div id="user_idvPaginationDetails">
+						        		<span class="pull-left">
+							        		<!-- <fmt:message key="ontology.details.individuals.showing"/> --> <span id="user_idvStartIndex"> 0 </span>-<span id="user_idvEndIndex"> 0 </span>/<span id="user_idvTotalIndividuals"> 0 </span>
+							        		<fmt:message key="ontology.details.individuals.items"/>
+						        		</span>
+						        		<span class='pull-right'>
+							        		<fmt:message key="ontology.details.individuals.go.to.page"/>&nbsp;
+							        		<select id="user_idvPageSelector">
+							        			<option value="1">1</option>
+							        		</select>
+							        	</span>
+						        	</div>
+						        </div> <!-- End pagination div -->
+						        
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="user_idvOkBtn"><fmt:message key="button.ok" /></button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="button.cancel" /></button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>

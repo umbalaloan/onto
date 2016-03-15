@@ -1,0 +1,742 @@
+body {
+    padding-top: 80px;
+}
+
+.navbar-brand {
+    color: #000000;
+    font-weight: bold;
+    margin-left: 0;
+    margin-right: 20px;
+    padding-right: 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+}
+
+.nav-stacked .nav-header {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+body#login {
+    padding-bottom: 40px;
+}
+
+.navbar .brand:hover {
+    color: #0099ff;
+}
+
+/* Fix for non-clickable dropdown nested menus on mobile browsers: APF-1384 */
+.navbar .dropdown-backdrop {
+	position: static;
+}
+
+/* Fix for dropdowns not working in IE: APF-1448 */
+.navbar {
+    filter:none !important;
+}
+
+#switchLocale {
+    position: absolute;
+    right: 10px;
+}
+
+h1, h2 {
+    margin-bottom: 10px;
+}
+
+#content {
+    padding-bottom: 60px;
+}
+
+.row h2 {
+    margin-top: 0;
+}
+
+/* FORMS */
+
+ul.feedbackPanel {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.controls.readonly {
+    padding-top: 5px;
+}
+
+.well.form-horizontal .form-actions {
+    margin-bottom: 0;
+}
+
+.btn-group {
+    margin-bottom: 10px;
+}
+
+.btn-group .btn, .form-actions .btn {
+    margin-left: 5px;
+}
+
+#search {
+    float: right;
+    margin-top: -40px;
+    width: 250px;
+}
+
+#search input[type="text"] {
+    display: inline-block;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+    margin-left: 20px;
+}
+
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#login p {
+    text-align: center
+}
+
+/* When using Wicket tag id can be overridden - using class here seems to more universal */
+.login p {
+    text-align: center
+}
+
+/* TABLES */
+
+th.sorted a, th.sortable a {
+    display: block;
+}
+
+.table th.order1 a {
+    background-image: url(../images/arrow_down.png);
+}
+
+.table th.order2 a {
+    background-image: url(../images/arrow_up.png);
+}
+
+.table th.sorted a, .table th.sortable a {
+    background-position: right;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+div.exportlinks a {
+    text-decoration: none;
+}
+
+div.exportlinks span {
+    background-repeat: no-repeat;
+    background-position: 1px 2px;
+}
+
+span.csv {
+    background-image: url(../images/ico_file_csv.png);
+}
+
+span.excel {
+    background-image: url(../images/ico_file_excel.png);
+}
+
+span.pdf {
+    background-image: url(../images/ico_file_pdf.png);
+}
+
+span.xml {
+    background-image: url(../images/ico_file_xml.png);
+}
+
+span.export {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 4px 1px 20px;
+}
+
+span.pagebanner {
+    display: block;
+    margin: 0 0 0 10px;
+    padding: 2px 4px 2px 0;
+}
+
+span.pagelinks {
+    display: block;
+    font-size: .95em;
+    margin-bottom: 5px;
+    margin-top: -18px;
+    padding: 2px 0 2px 0;
+    text-align: right;
+    width: 80%;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+    background-color: #f5f5f5;
+}
+
+/* FOOTER */
+#footer {
+    clear: both;
+    margin: 0 auto;
+    padding: 10px 0 20px 0;
+    border-top: 4px solid #f0f0f0;
+    text-align: center;
+    background-color: white;
+    color: #808080;
+    font-size: 0.9em;
+}
+
+#footer a {
+    color: #808080;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}
+
+#footer p {
+    margin: 0;
+}
+
+/* Responsive
+-------------------------------------------------- */
+
+/* Desktop large
+------------------------- */
+@media (min-width: 1200px) {
+
+}
+
+/* Desktop
+------------------------- */
+@media (max-width: 980px) {
+
+}
+
+/* Tablet to desktop
+------------------------- */
+
+/* Tablet
+------------------------- */
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones
+------------------------- */
+@media (max-width: 480px) {
+
+    #search {
+        float: none;
+        margin-top: 0;
+    }
+}
+
+.overflow-auto {
+	overflow: auto	
+}
+
+.display-none {
+	display: none
+}
+
+.display-inline-block {
+	display: inline-block;
+}
+
+.margin-top-1percent {
+	margin-top: -1%;
+}
+
+.panel-heading a:after {
+    font: normal normal normal 14px/1 FontAwesome;
+    content:"\f078";
+    float: right;
+    color: inherit !important;
+}
+
+.panel-heading a.collapsed:after {
+    content:"\f054";
+}
+
+.container {
+	width: 100%;
+}
+
+#jsTreePanel, #classDescriptionPanel,
+#objectPropDescriptionPanel, #objectPropPanel,
+#dataPropDescriptionPanel, #dataPropPanel,
+#annoPropDescriptionPanel, #annoPropPanel,
+#individualDescriptionPanel, #individualJsTreePanel, #classJsTreePanel { 
+	height: 69vh; /* 69% of viewport height (vh)*/
+	overflow: auto;
+}
+
+.modal-jstree { 
+	height: 62vh; /* 62% of viewport height (vh)*/
+	overflow: auto;
+}
+
+.modal-jstree-custom {
+	height: calc(62vh + 73px) !important;
+}
+
+.color-black {
+	color: black !important;
+}
+
+.badge {
+	color: #f5f5f5 !important;
+	background-color: #777 !important;
+	float: right;
+}
+
+div#classDescriptionPanel input,
+div#objectPropDescriptionPanel input,
+div#dataPropDescriptionPanel input,
+div#annoPropDescriptionPanel input,
+div#individualDescriptionPanel input {
+	height: auto !important;
+	font-size: inherit !important; 
+}
+
+div#description .panel-heading a:after,
+div#description .panel-heading span:after,
+div#objectPropDescription .panel-heading a:after,
+div#objectPropDescription .panel-heading span:after,
+div#dataPropDescription .panel-heading a:after,
+div#dataPropDescription .panel-heading span:after,
+div#annoPropDescription .panel-heading a:after,
+div#annoPropDescription .panel-heading span:after,
+div#IDdescription .panel-heading a:after,
+div#IDdescription .panel-heading span:after,
+div#propertyAssertions .panel-heading a:after,
+div#propertyAssertions .panel-heading span:after {
+	display: none;
+}
+
+div#individualDescriptionPanel .panel-heading a:after,
+div#individualDescriptionPanel .panel-heading span:after {
+	display: none !important;
+}
+
+
+div#description h4.panel-title a.accordion-toggle,
+div#objectPropDescription h4.panel-title a.accordion-toggle,
+div#dataPropDescription h4.panel-title a.accordion-toggle,
+div#annoPropDescription h4.panel-title a.accordion-toggle,
+div#IDdescription h4.panel-title a.accordion-toggle,
+div#propertyAssertions h4.panel-title a.accordion-toggle {
+	text-decoration: none;
+}
+
+div#annotations .panel-heading a:after,
+div#annotations .panel-heading span:after,
+div#objectPropAnnotations .panel-heading a:after,
+div#objectPropAnnotations .panel-heading span:after,
+div#dataPropAnnotations .panel-heading a:after,
+div#dataPropAnnotations .panel-heading span:after,
+div#annoPropAnnotations .panel-heading a:after,
+div#annoPropAnnotations .panel-heading span:after,
+div#IDannotations .panel-heading a:after,
+div#IDannotations .panel-heading span:after {
+	color: black !important;
+	display: none;
+}
+
+div#objectPropAnnotations h4.panel-title a.accordion-toggle,
+div#annotations h4.panel-title a.accordion-toggle,
+div#dataPropAnnotations h4.panel-title a.accordion-toggle,
+div#annoPropAnnotations h4.panel-title a.accordion-toggle,
+div#IDannotations h4.panel-title a.accordion-toggle {
+	text-decoration: none;
+}
+
+span.list-group-item-span:hover {
+    text-decoration: none;
+    color: #555555 !important;
+    background-color: #f5f5f5 !important;
+}
+
+div.parent-content {
+	margin-top: 1%;
+}
+
+li#classesLI {
+	margin-left: 2%
+}
+
+.btn-circle {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.margin-top-minus-1point5 {
+	margin-top: -1.5%
+}
+.margin-top-10px {
+	margin-top: -4px;
+}
+.white-space-pre-wrap {
+	white-space: pre-wrap;
+}
+.white-space-no-wrap {
+	white-space: nowrap;
+}
+.word-break-all {
+	word-break: break-all;
+}
+
+/* Currently no use */
+.classes-panel {
+	border-color: #D4A702 !important;
+}
+.classes-panel-heading {
+    color: rgb(255, 255, 255) !important;
+    background-color: #D4A702 !important;
+    border-color: #D4A702 !important;
+}
+/*End*/
+
+.purple-icon {
+	color: purple !important;
+}
+
+/* Data Properties tab*/
+.panel-dataprop-custom {
+	border-color: #3c763d !important;
+}
+
+.panel-dataprop-heading {
+	border-color: #3c763d !important;
+	color: #dff0d8 !important;
+	background-color: #3c763d !important;
+}
+
+.dp-class {
+	color: #3c763d;
+	transform: scale(1.6, 1);
+    font-size: 12px;
+}
+/* End */
+
+/* Classes tab */
+.panel-classes-custom {
+	border-color: #8a6d3b !important;
+}
+
+.panel-classes-heading {
+	border-color: #8a6d3b !important;
+	background: #8a6d3b !important;
+	color: #faebcc !important;
+}
+
+.class-color {
+	color: #8a6d3b;
+}
+/* End */
+
+/* Annotation properties tab */
+.panel-annoprop-custom {
+	border-color: #5FABA8;
+}
+
+.panel-annoprop-heading {
+    background-color: #5FABA8 !important;
+    color: white !important;
+    border-color: #5FABA8 !important;
+}
+
+.ap-class {
+	color: #5FABA8;
+	transform: scale(1.6, 1);
+    font-size: 12px;
+}
+/* End */
+
+.op-class {
+	color: #337ab7;
+	transform: scale(1.6, 1);
+    font-size: 12px;
+}
+
+/* Individuals tab */
+.panel-individual-custom {
+	border-color: #600088 !important;
+}
+
+.panel-individual-heading {
+	border-color: #600088 !important;
+	background: #600088 !important;
+	color: white !important;
+}
+
+.individual-color {
+	color: purple !important;
+}
+
+.diamond-icon:before {
+	content: '\2666';
+	font-size: 23px;
+}
+
+.individualJstree a:hover {
+	text-decoration: none !important;
+}
+
+#IDannotationBadge {
+    margin-right: 16px;
+    margin-top: 5px;
+}
+/* End */
+
+.margin-top-5percent {
+    margin-top: 5%;
+}
+
+.full-width {
+	width: 100% !important;	
+}
+
+#individualSearch {
+	height: 28px;
+	width: calc(96% - 25px);
+	margin-left: 2%;
+}
+
+.color-red {
+	color: red;
+}
+
+.refresh-icon {
+	float: right !important;
+    margin-right: 3% !important;
+    padding: 0 !important;
+}
+
+.cursor-not-allowed {
+	cursor: not-allowed !important;
+}
+
+#classSelectorSearch {
+	margin-bottom: 2% !important;
+}
+
+.width-60vw {
+	width: 60vw !important;	
+}
+
+.select2-container{
+	width: 100% !important;
+}
+
+.info-panel {
+	text-align: center;
+	vertical-align: middle;
+	line-height: calc(69vh + 73px) !important;
+}
+
+.margin-right-15px {
+	margin-right: 15px;
+}
+
+.margin-bottom-none {
+	margin-bottom: 0px !important;
+}
+
+#paginationDiv > ul,
+#opa_paginationDiv > ul,
+#user_idvPaginationDiv > ul,
+#otherUser_paginationDiv > ul {
+	margin: 0 !important;
+}
+
+#pageSelector,
+#opa_pageSelector,
+#user_idvPageSelector {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+#paginationDetails,
+#opa_paginationDetails,
+#user_idvPaginationDetails,
+#otherUser_paginationDetails {
+	height: 17px;
+}
+
+.panel-height-custom {
+	height: calc(69vh + 73px) !important;
+}
+
+#individualJstree {
+	padding-top: 0 !important;
+}
+
+.visibility-hidden {
+	visibility: hidden;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+div#individualParentPanel div.blockUI.blockMsg.blockElement {
+	left: 30% !important;
+}
+
+div#individualDescriptionParentPanel div.blockUI.blockMsg.blockElement {
+	left: 42% !important;
+}
+
+.annotation-badge {
+    margin-right: 16px;
+    margin-top: 5px;
+}
+
+.margin-top-15px {
+	margin-top: 15px;
+}
+
+.margin-bottom-15px {
+	margin-bottom: 15px;
+}
+
+.margin-left-17px {
+	margin-left: 17px;
+}
+
+.user-title {
+	font-size: 16px !important;
+	text-align: center;
+}
+
+.user-title-anchor {
+	text-decoration: none;
+	color: inherit !important;
+}
+
+#userVersionSelect {
+	border-radius: 3px;
+	height: 34px !important;
+}
+
+.list-group-width {
+	width: calc(100% - 25px) !important;
+}
+
+/* Fix for overflow content of floating children in a parent*/
+h4.panel-title {
+	/* overflow: auto; */
+}
+
+/* #saveChangesBtn {
+	float: right !important;
+	margin-right: 15px !important;
+}
+
+#downloadBtn {
+	float: right !important;
+	margin-right: 15px !important;
+} */
+
+/* .cover-popup{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left:0;
+}
+	
+  .popup-message{
+    width: 350px;
+    height: 150px;
+    background-color: #ffffff;
+    top: 50%;
+    display: inline-block;
+    position: absolute;
+    margin-left: -175px;
+    left: 50%;
+    margin-top: -70px;
+    text-align: center;
+    border-radius: 2px;
+    	padding:15px;
+  }   	
+    .popup-title{
+      width: 100%;
+      height: 50%;
+      color: black;
+      padding-top: 20px;
+      text-align: left;
+      padding-left: 10px;
+    }
+    
+    .block-button{
+     float: right;
+	padding-top: 10px;
+	width: 200px;
+	height: 50%;
+	color: black;
+	text-align: center;
+    }	
+      .right-position{
+          float: right;
+          margin-right: 20px;
+      } */

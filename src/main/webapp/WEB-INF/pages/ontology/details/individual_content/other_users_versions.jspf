@@ -1,0 +1,154 @@
+<!-- Display name -->
+<%@page import="com.vn.smartdata.constants.SystemConstants"%>
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.displayName" />
+		</label>
+		<input class="form-control" name="otherUser_IDdisplayName" value="" id="otherUser_IDdisplayName" disabled/>
+	</div>
+</div>
+
+<!--  IRI  -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.iri" />
+		</label>
+		<input class="form-control" name="otherUser_IDiri" value="" id="otherUser_IDiri" disabled/>
+	</div>
+</div>
+
+<!-- Descriptions by many users -->
+<div id="otherUsersDescriptions">
+
+</div>
+
+<script type="text/javascript">
+function loadOtherUsersIndvididualVersions() {
+	//reloadOtherUserIndividuals(null, 1, null, null, null);
+	reloadOtherUserIndividuals(null, 1, function(totalPages){
+
+    	// Render paginator for the first time
+    	// Attached reload individuals ON page changed event
+		reRenderOtherUsersPaginator(totalPages, null, function(e,oldPage,newPage){
+    		// This time we reload but do not need to reRender the paginator anymore
+			reloadOtherUserIndividuals(null, newPage, null, null, false);
+	 	}, 1);
+	}, null, true);
+}
+
+function reloadOtherUserIndividuals (url, newPageNumber, reRenderPaginatorFunction, searchString, reRenderPageSelector) {
+	var selectedIndividual = getSelectedIndividualIRI();
+	
+	$.ajax({
+        type: "GET",
+        url: '${ctx}' + '/individual/getOtherIndividualVersions',
+        data: {
+        	"individualIRI" : selectedIndividual,
+        	"pageNumber": newPageNumber,
+        	"ontologyId" : ontologyId,
+        },
+        beforeSend: function () {
+        	UTIL.blockElementWithMessage('#individualDescriptionParentPanel', 'Loading...');
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log("jqXHR: ", jqXHR);
+            console.log("textStatus: ", textStatus);
+            console.log("errorThrown: ", errorThrown);
+	        UTIL.showMessage('Error while loading individuals', 'error');
+        },
+        success: function(data){
+        	$('#otherUsersDescriptions').html(data);
+        },
+        complete: function () {
+        	var totalPages = otherUser_totalPages;
+	        var totalResults = otherUser_totalRecords;
+	        var itemsPerPage = <%=SystemConstants.ITEM_PER_PAGE%>;
+
+	        var startIndex = otherUser_startIndex;
+	        var endIndex = otherUser_endIndex;
+	        
+	        if(totalPages != 0 || startIndex <= endIndex){
+	        	// Display paginate details
+	        	// These elements are located at individuals_lazy-loading.jspf
+	        	$('#otherUser_startIndex').text(' ' + startIndex + ' ');
+	        	$('#otherUser_endIndex').text(' ' + endIndex + ' ');
+	        	$('#otherUser_totalIndividuals').text(' ' + totalResults + ' ');
+
+        	 	// Render paginator if the function is existed
+        	 	if(reRenderPaginatorFunction){
+        	 		reRenderPaginatorFunction(totalPages);
+           	 	}
+
+        	 	if(reRenderPageSelector){
+        	 		// Clear page selector options
+               	 	$('#otherUser_pageSelector').html('');
+               	 	// Append pages into page selector
+            	 	for (i = 1; i <= totalPages; i++) {
+                	 	var option = $('<option/>');
+                	 	option.attr('value', i);
+                	 	option.text(i);
+
+                	 	// Select the first page, that is page number 1
+                	 	if(i == 1){
+                	 		option.attr('selected', 'selected');
+                   	 	}
+
+                	 	$('#otherUser_pageSelector').append(option);
+            	 	}
+           	 	}
+
+        	 	// Show pagination div & customize the description panel height again
+            	$('#otherUser_paginationDiv').show();
+    			$('#individualDescriptionPanel').removeClass('panel-height-custom');
+	        } else {
+	        	$('#otherUser_paginationDiv').hide();
+    			$('#individualDescriptionPanel').addClass('panel-height-custom');
+	        }
+	        
+        	// Do not allow user to load the page once again as it is already loaded
+        	otherVersionsLoaded = true;
+
+			// Unblock the description when it is finished
+        	UTIL.unblockElement('#individualDescriptionParentPanel');
+        }
+    });
+}
+
+//Rerender paginator options
+function reRenderOtherUsersPaginator(totalPages, onPageClicked, onPageChanged, currentPage){
+	var bootstrapPaginatorOptions = {
+   		totalPages: totalPages,    	// Total number of pages
+   		onPageClicked: function(e,originalEvent,type,page){
+            if(onPageClicked){
+            	onPageClicked(e, originalEvent, type, page);
+            }
+        },
+			onPageChanged: function(e,oldPage,newPage){
+	   			if(onPageChanged){
+	   				onPageChanged(e,oldPage,newPage);
+   	   		}
+        }
+ 	}
+
+ 	if(currentPage){
+     	bootstrapPaginatorOptions.currentPage = currentPage;
+    }
+
+    $('#otherUser_paginationUL').bootstrapPaginator(bootstrapPaginatorOptions);
+}
+
+$(function(){
+	var reRenderOtherUserPageSelector = true;
+	$('#otherUser_paginationUL').bootstrapPaginator(bootstrapPaginatorOptions);
+
+	// on change, trigger bootstrap paginator on change page event
+	$('#otherUser_pageSelector').on('change', function(){
+		// Onchange page, no need to reRender page selector
+		reRenderOtherUserPageSelector = false;
+		var selectedPageNumber = $('#otherUser_pageSelector').val();
+		$('#otherUser_paginationUL').bootstrapPaginator("show", selectedPageNumber);
+	});
+});
+</script>

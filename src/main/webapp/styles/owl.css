@@ -1,0 +1,61 @@
+/* OWL Keyword class is used to style any keyword */
+.owl-keyword {
+	font-weight: bold;
+	color: magenta;
+}
+
+/* OWL Object Keyword class is used to style the object restriction type keyword */
+.owl-object-keyword {
+	
+}
+
+/* OWL Object Restriction class */
+.owl-object-restriction {
+	
+}
+
+/* OWL Object Some Values From */
+.owl-object-some-values-from {
+	
+}
+.owl-object-some-values-from-keyword {
+	
+}
+
+/* OWL Property */
+.owl-property {
+	font-weight: bold;
+}
+
+/* OWL Object Property Expression */
+.owl-object-property-expression {
+}
+
+/* decorating entity/class display in class description => Annotation/Properties */
+.owl-entity-short-form {
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+
+.class-description-name, .class-hierarchy-name {
+    font-weight: bold;
+    font-style: oblique;
+    color: white !important;
+}
+
+.and-operator, .or-operator {
+    color: turquoise;
+    font-weight: bold;
+}
+
+.parenthesis {
+	font-weight: bold;
+}
+
+.owl-object-one-of {
+	font-weight: bold;
+}
+.cardinality {
+	font-weight: bold;
+}

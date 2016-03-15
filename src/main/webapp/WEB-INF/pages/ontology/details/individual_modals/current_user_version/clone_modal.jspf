@@ -1,0 +1,197 @@
+<div class="modal fade" id="user_cloneVersionModal">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<fmt:message key="ontology.details.individuals.current.user.version.clone" />
+					</h4> 
+				</div>
+				<div class="modal-body">
+					<p>
+						<fmt:message key="ontology.details.individuals.current.user.version.clone.message" />
+					</p>
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<input name="cloneOption" id="cloneOption1" type="radio" checked="checked" value="originalVersion"> <fmt:message key="ontology.details.individuals.current.user.version.clone.option1" /><br/>
+							<input name="cloneOption" id="cloneOption2" type="radio" value="collaborativeVersion"> <fmt:message key="ontology.details.individuals.current.user.version.clone.option2" /><br/>
+							<input name="cloneOption" id="cloneOption3" type="radio" value="otherVersion"> <fmt:message key="ontology.details.individuals.current.user.version.clone.option3" /><br/>
+							<input name="cloneOption" id="cloneOption4" type="radio" value="deleteAll"> <fmt:message key="ontology.details.individuals.current.user.version.clone.option4" /><br/>
+							
+							<span class="margin-left-17px display-none" id="userVersionSelectSpan">
+								<select id="userVersionSelect" name="userVersionSelect" style="width: 50% !important">
+								</select>
+								&nbsp;
+								<a class="btn btn-success btn-sm display-none" target="_blank">
+									<fmt:message key="ontology.details.individuals.current.user.version.clone.view.btn"/>
+								</a>
+							</span>
+						</div>
+					</div>
+					
+					<br/>
+					
+					<p style="color: red">
+						Please note that your current data will be deleted and replaced by the version that you select. So, be CAREFUL!
+					</p>
+					
+					<!-- <p>
+						<fmt:message key="ontology.details.individuals.current.user.version.clone.type" />
+					</p>
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<input name="mergeOption" id="mergeOption1" type="radio" value="true"> <fmt:message key="ontology.details.individuals.current.user.version.clone.type.option1" /><br/>
+							<input name="mergeOption" id="mergeOption2" type="radio" checked="checked" value="false"> <fmt:message key="ontology.details.individuals.current.user.version.clone.type.option2" /><br/>
+						</div>
+					</div> -->
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="user_cloneOkBtn"><fmt:message key="button.ok" /></button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="button.cancel" /></button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
+
+<script type="text/javascript">
+var selectedUserId;
+
+var viewVersionAnchor = $('#userVersionSelectSpan').find('a');
+
+$(function () {
+	$('input[name="cloneOption"]').click(function(){
+		var inputId = $(this).attr('id');
+
+		if(inputId == 'cloneOption3'){
+			$('#userVersionSelectSpan').show();
+		} else {
+			$('#userVersionSelectSpan').hide();
+		}
+	});
+
+	$('#userVersionSelect').select2({
+		placeholder: '<fmt:message key="ontology.details.individuals.current.user.version.clone.option3.message" />'
+	}).on('change', function(e){
+		// mostly used event, fired to the original element when the value changes
+		selectedUserId = $(this).val();
+		var selectedIndividualIRI = getSelectedIndividualIRI();
+
+		if(selectedUserId != 0){
+			var params = {
+					userId: selectedUserId,
+					ontologyId: ontologyId,
+					individualIRI: selectedIndividualIRI
+				}
+	
+			var viewVersionURL = '//' + window.location.host + contextPath + '/ontology/viewIndividualContent?' + $.param(params);
+			viewVersionAnchor.attr('href', viewVersionURL);
+			viewVersionAnchor.show();
+		} else {
+			viewVersionAnchor.attr('href', '//' + window.location.host + contextPath);
+			viewVersionAnchor.hide();
+		}
+	});
+
+	$('#user_cloneVersionModal').on('show.bs.modal', function (e) {
+		selectedUserId = 0;
+		var selectedIndividualIRI = getSelectedIndividualIRI();
+
+		$.ajax({
+			type: "GET",
+	        url: '${ctx}' + "/individual/getIndividualEditors",
+	        data: {
+	        	ontologyId: ontologyId,
+	        	individualIRI: selectedIndividualIRI
+	        },
+	        dataType: "json",
+	        beforeSend: function () {
+	        	UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+	        },
+	        error: function () {
+	        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+	        },
+	        success: function(data){
+		        $('#userVersionSelect').html('');
+		        
+		        // Appending option to select dropdown
+		        $('#userVersionSelect').append('<option value="0"><fmt:message key="ontology.details.individuals.current.user.version.clone.option3.message" /></option>');
+				$.each(data, function (index, value){
+					var option = '<option value="' + value.userId + '" title="' + value.userName + '">' + value.fullName  + '</option>';
+					$('#userVersionSelect').append(option);
+				});
+
+				$('#userVersionSelect').select2();
+
+				$('#userVersionSelectSpan').find('.select2-container').attr('style', 'width: 50% !important;');
+	        },
+	        complete: function () {
+	        	UTIL.hideLoadingMask();
+	        }
+		});
+	});
+
+	$('#user_cloneVersionModal').on('hide.bs.modal', function (e) {
+		viewVersionAnchor.attr('href', '//' + window.location.host + contextPath);
+		viewVersionAnchor.hide();
+	});
+
+	$('#user_cloneOkBtn').click(function(){
+		var selectedIndividualIRI = getSelectedIndividualIRI();
+		var selectedVersion = $('input[name="cloneOption"]:checked').val();
+		//var isMerged = $('input[name="mergeOption"]:checked').val();
+		var isMerged = false;
+
+		//console.log('clone option: ', selectedVersion);
+		//console.log('merge option: ', isMerged);
+		
+		if(selectedVersion == 'otherVersion' && selectedUserId == 0){
+			UTIL.showMessage('<fmt:message key="ontology.details.individuals.current.user.version.clone.option3.error" />', 'error');
+		} else {
+		
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/cloneOtherVersion",
+		        data: {
+			        selectedVersion: selectedVersion,
+			        isMerged: isMerged,
+		        	ontologyId: ontologyId,
+		        	individualIRI: selectedIndividualIRI,
+		        	selectedUserId: selectedUserId 
+		        },
+		        dataType: "json",
+		        beforeSend: function () {
+		        	UTIL.showLoadingMaskWithMessage('Loading...');
+		        },
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+		        	if(data){
+		        		UTIL.showMessage('Your data has been successfully copied. Please wait for re-loading!', 'success');
+		        		$('#user_cloneVersionModal').modal('hide');
+		        		selectedIndividualAnchorElement.trigger('click');
+		        	} else {
+		        		UTIL.showMessage('There is something wrong while executing your request!', 'error');
+		        	}
+	
+		        	UTIL.hideLoadingMask();
+		        },
+		        complete: function () {
+		        	
+		        }
+			});
+
+		}
+	});
+});
+</script>

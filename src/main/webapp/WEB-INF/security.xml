@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http pattern="/images/**" security="none"/>
+    <http pattern="/styles/**" security="none"/>
+    <http pattern="/scripts/**" security="none"/>
+    <http pattern="/assets/**" security="none"/>
+    <http pattern="/webjars/**" security="none"/>
+
+    <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/app/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/app/passwordHint*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_ADMIN','ROLE_USER')"/>
+        <intercept-url pattern="/app/requestRecoveryToken*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/app/updatePassword*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/app/signup*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_ADMIN','ROLE_USER')"/>
+        <intercept-url pattern="/**/download/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**/download*" access="hasRole('ROLE_ADMIN')"/>
+        <!-- <intercept-url pattern="/**/ontology/details*" access="hasRole('ROLE_ADMIN')"/> -->
+        <intercept-url pattern="/**/ontology/create" access="hasRole('ROLE_ADMIN')"/>
+        <!-- <intercept-url pattern="/**/ontology/list" access="hasRole('ROLE_ADMIN')"/> -->
+        <intercept-url pattern="/**/ontology/saveChanges" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**/ontology/discardChanges" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**/ontology/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+        <intercept-url pattern="/**/individual/addNewIndividual" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**/individual/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+        <intercept-url pattern="/app/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+        <form-login login-page="/login" authentication-failure-url="/login?error=true" login-processing-url="/j_security_check"/>
+        <remember-me user-service-ref="userManager" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
+        <!-- <session-management invalid-session-url="/invalidate.html"/> -->
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userManager">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <!-- Override the default password-encoder (BCrypt) by uncommenting the following and changing the class -->
+    <!-- <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/> -->
+    
+    <global-method-security>
+        <protect-pointcut expression="execution(* *..service.UserManager.getUsers(..))" access="ROLE_ADMIN"/>
+        <protect-pointcut expression="execution(* *..service.UserManager.removeUser(..))" access="ROLE_ADMIN"/>
+    </global-method-security>
+</beans:beans>

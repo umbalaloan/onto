@@ -1,0 +1,386 @@
+<!-- Display name -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.displayName" />
+		</label>
+		<input class="form-control" name="IDdisplayName" value="" id="IDdisplayName" disabled/>
+	</div>
+</div>
+
+<!--  IRI  -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.iri" />
+		</label>
+		<input class="form-control" name="IDiri" value="" id="IDiri" disabled/>
+	</div>
+</div>
+
+<!-- Annotations -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label full-width">
+			<fmt:message key="ontology.details.annotations" />
+			&nbsp;
+			<!-- <button type="button" href="#addIndividualAnno" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addIndividualAnnoModal" id="addIndividualAnnoBtn" data-keyboard="false" data-backdrop="static">
+				<i class="fa fa-plus"></i>
+			</button> -->
+			<span class="badge pull-right annotation-badge" id="IDannotationBadge" title='<fmt:message key="ontology.details.individual.annotation.badge.title"/>'>0</span>
+		</label>
+		<div id="IDannotations"></div>
+	</div>
+</div>
+
+<!-- Description -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.description" />
+		</label>
+		<div id="IDdescription">
+			
+			<!-- Types -->
+			<div class="panel-group" id="typesAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#typesAccordion" href="#typesBody">
+									<fmt:message key="ontology.details.description.types" />
+									<span class="badge" id="typesBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addIndividualType" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#classSelectorModal" id="addIndividualTypeBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="typesBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Same individual as -->
+			<div class="panel-group" id="sameAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#sameAccordion" href="#sameBody">
+									<fmt:message key="ontology.details.description.same" />
+									<span class="badge" id="sameBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addSameIndividual" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addSameIndividualModal" id="addSameIndividualBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="sameBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- different individuals -->
+			<div class="panel-group" id="differentAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#differentAccordion" href="#differentBody">
+									<fmt:message key="ontology.details.description.different" />
+									<span class="badge" id="differentBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addDifferentIndividual" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addDifferentIndividualModal" id="addDifferentIndividualBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+							
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="differentBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+	
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.property.assertions" />
+		</label>
+		<div id="propertyAssertions">
+			
+			<!-- object property assertions -->
+			<div class="panel-group" id="objectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#objectPropAssertionAccordion" href="#objectPropAssertionBody">
+									<fmt:message key="ontology.details.object.property.assertions" />
+									<span class="badge" id="objectPropAssertionBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addIndividualOPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addIndividualOPAModal" id="addIndividualOPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="objectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- data property assertions -->
+			<div class="panel-group" id="dataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dataPropAssertionAccordion" href="#dataPropAssertionBody">
+									<fmt:message key="ontology.details.data.property.assertions" />
+									<span class="badge" id="dataPropAssertionBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addIndividualDPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addIndividualDPAModal" id="addIndividualDPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="dataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative object property assertions -->
+			<div class="panel-group" id="negativeObjectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#negativeObjectPropAssertionAccordion" href="#negativeObjectPropAssertionBody">
+									<fmt:message key="ontology.details.negative.object.property.assertions" />
+									<span class="badge" id="negativeObjectPropAssertionBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addIndividualOPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addIndividualOPAModal" id="addIndividualNOPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="negativeObjectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative data property assertions -->
+			<div class="panel-group" id="negativeDataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#negativeDataPropAssertionAccordion" href="#negativeDataPropAssertionBody">
+									<fmt:message key="ontology.details.negative.data.property.assertions" />
+									<span class="badge" id="negativeDataPropAssertionBadge">0</span>
+								</a>
+								<!-- <button type="button" href="#addIndividualDPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#addIndividualDPAModal" id="addIndividualNDPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button> -->
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="negativeDataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function loadOriginalIndividualVersion (originalVersionJSONData) {
+	
+	var data = originalVersionJSONData.data;
+	var text = originalVersionJSONData.text;
+	var individualIRI = originalVersionJSONData.id;
+
+	// if the individual name is too long, rendering this name is ugly in indivudal hierarchy
+	//$('span#individualHierarchyName').text(text);
+	$('span#individualDescriptionName').text(text);
+
+	// Append name and IRI of individual into inputs of 4 tabs
+	$('#IDdisplayName').val(text);
+  	$('#IDiri').val(individualIRI);
+
+  	$('#user_IDdisplayName').val(text);
+  	$('#user_IDiri').val(individualIRI);
+
+  	$('#otherUser_IDdisplayName').val(text);
+  	$('#otherUser_IDiri').val(individualIRI);
+
+  	$('#collab_IDdisplayName').val(text);
+  	$('#collab_IDiri').val(individualIRI);
+  	// End appending
+  	
+  	$('#IDannotations').html('');
+  	$('#IDdescription').find('.list-group').html('');
+  	$('#propertyAssertions').find('.list-group').html('');
+  	
+  	if(null != data){
+      	// Annotations	annotationBadge
+      	try {
+      		$('span#IDannotationBadge').text(data.annotations.length);
+      	} catch (e) {
+      		$('span#IDannotationBadge').text(0);
+				console.log(e);
+      	}
+
+      	// Iterate annotation data
+  		$.each(data.annotations, function( index, value ) {
+  	  		// annotation data, id prefix, annotation index
+  			updateAnnotation(value, '', index, isAdmin);
+		});
+
+      	// Reset individual type array
+  		individualTypes = [];
+
+      	// Types
+      	$('span#typesBadge').text(data.types.length);
+  		$.each(data.types, function( index, value ) {
+      		/* var deleteBtnClone = $(deleteBtn).clone();
+      		//deleteBtnClone.addClass('deleteType');
+
+      		var additionalIcon = '';
+
+      		if(!value.isAnonymous){
+      			individualTypes.push(value.classIRI);
+      			additionalIcon = '<i class="fa fa-circle class-color"></i>  ';
+      		}
+
+      		// Assign click function callback to a element
+      		deleteBtnClone.bind('click', function(e) {
+      			e.preventDefault();
+      			if(!value.isAnonymous){
+      				deleteType(value.classIRI, individualIRI);
+      			} else {
+      				UTIL.showMessage("Deleting an OWL class expression (not a simple class) is not yet implemented", 'notice')
+      			}
+      		});
+      		
+  			typesListGroup.append($(listGroupItemTemplate).clone().append(additionalIcon + value.name).append(deleteBtnClone)); */
+
+  			updateType(value, '', index, isAdmin);
+		});
+      	
+      	// Same Individual as
+      	$('span#sameBadge').text(data.sameIndividuals.length);
+  		$.each(data.sameIndividuals, function( index, value ) {
+  			//sameListGroup.append( $(listGroupItemTemplate).clone().append(value.name));
+
+  			updateSameIndividual(value, '', index, isAdmin);
+		});
+
+  		// Different individuals
+      	$('span#differentBadge').text(data.differentIndividuals.length);
+  		$.each(data.differentIndividuals, function( index, value ) {
+  			//differentListGroup.append( $(listGroupItemTemplate).clone().append(value.name));
+
+  			updateDifferentIndividual(value, '', index, isAdmin);
+		});
+
+  		// Object Prop Assertion
+      	$('span#objectPropAssertionBadge').text(data.objectPropAssertions.length);
+  		$.each(data.objectPropAssertions, function( index, value ) {
+  			/* var deleteBtnClone = $(deleteBtn).clone();
+      		var isNegative = false;
+
+      		// Assign click function callback to a element
+      		deleteBtnClone.bind('click', function(e) {
+      			e.preventDefault();
+      			deleteOPA(value.propertyIRI, value.objectIRI, individualIRI, isNegative);
+      		});
+      		
+  			opaListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-square op-class"></i>  ' + value.property + '&nbsp;&nbsp;' + value.object).append(deleteBtnClone)); */
+
+  			updateOPA(value, '', index, isAdmin);
+		});
+
+  		// Data Prop Assertion
+      	$('span#dataPropAssertionBadge').text(data.dataPropAssertions.length);
+  		$.each(data.dataPropAssertions, function( index, value ) {
+  			/* var deleteBtnClone = $(deleteBtn).clone();
+      		var isNegative = false;
+
+      		// Assign click function callback to a element
+      		deleteBtnClone.bind('click', function(e) {
+      			e.preventDefault();
+      			deleteDPA(value.isRDFPlainLiteral, value.propertyIRI, value.lang, value.dataTypeIRI, value.literalValue, individualIRI, isNegative);
+      		});
+      		
+  			dpaListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-square dp-class"></i>  ' + value.property + '&nbsp;&nbsp;' + value.object).append(deleteBtnClone)); */
+  			updateDPA(value, '', index, isAdmin);
+		});
+
+  		// Negative Object Prop Assertion
+      	$('span#negativeObjectPropAssertionBadge').text(data.negativeObjectPropAssertions.length);
+  		$.each(data.negativeObjectPropAssertions, function( index, value ) {
+  			/* var deleteBtnClone = $(deleteBtn).clone();
+      		var isNegative = true;
+
+      		// Assign click function callback to a element
+      		deleteBtnClone.bind('click', function(e) {
+      			e.preventDefault();
+      			deleteOPA(value.propertyIRI, value.objectIRI, individualIRI, isNegative);
+      		});
+      		
+  			nopaListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-square op-class"></i>  ' + value.property + '&nbsp;&nbsp;' + value.object).append(deleteBtnClone)); */
+
+  			updateNOPA(value, '', index, isAdmin);
+		});
+
+  		// Negative Data Prop Assertion
+      	$('span#negativeDataPropAssertionBadge').text(data.negativeDataPropAssertions.length);
+  		$.each(data.negativeDataPropAssertions, function( index, value ) {
+  			/* var deleteBtnClone = $(deleteBtn).clone();
+      		var isNegative = true;
+
+      		// Assign click function callback to a element
+      		deleteBtnClone.bind('click', function(e) {
+      			e.preventDefault();
+      			deleteDPA(value.isRDFPlainLiteral, value.propertyIRI, value.lang, value.dataTypeIRI, value.literalValue, individualIRI, isNegative);
+      		});
+      		
+      		ndpaListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-square dp-class"></i>  ' + value.property + '&nbsp;&nbsp;' + value.object).append(deleteBtnClone)); */
+
+  			updateNDPA(value, '', index, isAdmin);
+		});
+	}
+}
+
+$(function(){
+	$('#classSelectorSearch').keyup(function () {
+		searchJsTree('#classSelectorJsTree', $.trim($(this).val()));
+	});
+});
+</script>

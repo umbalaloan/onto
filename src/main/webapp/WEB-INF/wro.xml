@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro">
+
+    <!-- CSS URL Rewriting fails when using webjar resource locator:
+         https://github.com/alexo/wro4j/issues/127 -->
+    <group name="main">
+    	<css>classpath:META-INF/resources/webjars/bootstrap/3.3.5/css/bootstrap.min.css</css>
+    	<css>classpath:META-INF/resources/webjars/font-awesome/4.2.0/css/font-awesome.min.css</css>
+    	<css>classpath:META-INF/resources/webjars/datatables/1.10.4/css/jquery.dataTables.min.css</css>
+    	<css>classpath:META-INF/resources/webjars/bootstrap-datepicker/1.3.1/css/datepicker.css</css>
+    	<css>classpath:META-INF/resources/webjars/select2/4.0.0/dist/css/select2.min.css</css>
+    	<css>classpath:META-INF/resources/webjars/select2-bootstrap-css/1.4.4/select2-bootstrap.css</css>
+    	<css>classpath:META-INF/resources/webjars/pnotify/2.0.1/pnotify.core.css</css>
+    	<css>classpath:META-INF/resources/webjars/pnotify/2.0.1/pnotify.buttons.css</css>
+    	<css>classpath:META-INF/resources/webjars/jstree/3.2.1/themes/default/style.min.css</css>
+    	
+    	<js>classpath:META-INF/resources/webjars/jquery/1.11.3/jquery.min.js</js>
+    	<js>classpath:META-INF/resources/webjars/bootstrap/3.3.5/js/bootstrap.min.js</js>
+    	<js>classpath:META-INF/resources/webjars/jquery-cookie/1.3.1/jquery.cookie.js</js>
+    	<js>classpath:META-INF/resources/webjars/datatables/1.10.4/js/jquery.dataTables.min.js</js>
+    	<js>classpath:META-INF/resources/webjars/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js</js>
+    	<js>classpath:META-INF/resources/webjars/select2/4.0.0/dist/js/select2.full.min.js</js>
+    	<js>classpath:META-INF/resources/webjars/pnotify/2.0.1/pnotify.core.js</js>
+    	<js>classpath:META-INF/resources/webjars/pnotify/2.0.1/pnotify.nonblock.js</js>
+    	<js>classpath:META-INF/resources/webjars/pnotify/2.0.1/pnotify.buttons.js</js>
+    	<js>classpath:META-INF/resources/webjars/jstree/3.2.1/jstree.min.js</js>
+    	<js>classpath:META-INF/resources/webjars/jquery-blockui/2.65/jquery.blockUI.js</js>
+    	<js>/scripts/rightclick-contextmenu.js</js>
+    	<js>/scripts/datatable/moment.min.js</js>
+    	<js>/scripts/datatable/datetime-moment.js</js>
+    	<js>/scripts/bootstrap-paginator/bootstrap-paginator.min.js</js>
+    	
+        <!-- <css>classpath:META-INF/resources/webjars/bootswatch-spacelab/3.3.1+2/css/bootstrap.min.css</css> -->
+        <!-- <css>/styles/style.css</css>
+        <js>/scripts/script.js</js> -->
+    </group>
+</groups>

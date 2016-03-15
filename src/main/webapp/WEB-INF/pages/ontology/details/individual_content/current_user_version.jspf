@@ -1,0 +1,1031 @@
+<!-- Display name -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.displayName" />
+		</label>
+		<input class="form-control" name="user_IDdisplayName" value="" id="user_IDdisplayName" disabled/>
+	</div>
+</div>
+
+<!--  IRI  -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.iri" />
+		</label>
+		<input class="form-control" name="user_IDiri" value="" id="user_IDiri" disabled/>
+	</div>
+</div>
+
+<div class="col-sm-12 center-block margin-top-15px margin-bottom-15px">
+	<button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#user_cloneVersionModal" data-keyboard="false" data-backdrop="static" id="user_cloneBtn">
+		<fmt:message key="ontology.details.individuals.current.user.version.clone"/>
+	</button>
+</div>
+
+<!-- Annotations -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label full-width">
+			<fmt:message key="ontology.details.annotations" />
+			&nbsp;
+			<button type="button" href="#user_addIndividualAnno" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addIndividualAnnoModal" id="user_addIndividualAnnoBtn" data-keyboard="false" data-backdrop="static">
+				<i class="fa fa-plus"></i>
+			</button>
+			<span class="badge pull-right annotation-badge" id="user_IDannotationBadge" title='<fmt:message key="ontology.details.individual.annotation.badge.title"/>'>0</span>
+		</label>
+		<div id="user_IDannotations"></div>
+	</div>
+</div>
+
+<!-- Description -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.description" />
+		</label>
+		<div id="user_IDdescription">
+			
+			<!-- Types -->
+			<div class="panel-group" id="user_typesAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_typesAccordion" href="#user_typesBody">
+									<fmt:message key="ontology.details.description.types" />
+									<span class="badge" id="user_typesBadge">0</span>
+								</a>
+								<button type="button" href="#user_addIndividualType" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_classSelectorModal" id="user_addIndividualTypeBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_typesBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Same individual as -->
+			<div class="panel-group" id="user_sameAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_sameAccordion" href="#user_sameBody">
+									<fmt:message key="ontology.details.description.same" />
+									<span class="badge" id="user_sameBadge">0</span>
+								</a>
+								<button type="button" href="#user_addSameIndividual" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addRelatedIndividualModal" id="user_addSameIndividualBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_sameBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- different individuals -->
+			<div class="panel-group" id="user_differentAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_differentAccordion" href="#user_differentBody">
+									<fmt:message key="ontology.details.description.different" />
+									<span class="badge" id="user_differentBadge">0</span>
+								</a>
+								<button type="button" href="#user_addDifferentIndividual" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addRelatedIndividualModal" id="user_addDifferentIndividualBtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+							
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_differentBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+	
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.property.assertions" />
+		</label>
+		<div id="user_propertyAssertions">
+			
+			<!-- object property assertions -->
+			<div class="panel-group" id="user_objectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_objectPropAssertionAccordion" href="#user_objectPropAssertionBody">
+									<fmt:message key="ontology.details.object.property.assertions" />
+									<span class="badge" id="user_objectPropAssertionBadge">0</span>
+								</a>
+								<button type="button" href="#user_addIndividualOPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addIndividualOPAModal" id="user_addIndividualOPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_objectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- data property assertions -->
+			<div class="panel-group" id="user_dataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_dataPropAssertionAccordion" href="#user_dataPropAssertionBody">
+									<fmt:message key="ontology.details.data.property.assertions" />
+									<span class="badge" id="user_dataPropAssertionBadge">0</span>
+								</a>
+								<button type="button" href="#user_addIndividualDPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addIndividualDPAModal" id="user_addIndividualDPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_dataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative object property assertions -->
+			<div class="panel-group" id="user_negativeObjectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_negativeObjectPropAssertionAccordion" href="#user_negativeObjectPropAssertionBody">
+									<fmt:message key="ontology.details.negative.object.property.assertions" />
+									<span class="badge" id="user_negativeObjectPropAssertionBadge">0</span>
+								</a>
+								<button type="button" href="#user_addIndividualOPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addIndividualOPAModal" id="user_addIndividualNOPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_negativeObjectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative data property assertions -->
+			<div class="panel-group" id="user_negativeDataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#user_negativeDataPropAssertionAccordion" href="#user_negativeDataPropAssertionBody">
+									<fmt:message key="ontology.details.negative.data.property.assertions" />
+									<span class="badge" id="user_negativeDataPropAssertionBadge">0</span>
+								</a>
+								<button type="button" href="#user_addIndividualDPA" class="btn btn-sm btn-success btn-circle" data-toggle="modal" data-target="#user_addIndividualDPAModal" id="user_addIndividualNDPABtn" data-keyboard="false" data-backdrop="static">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="user_negativeDataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+</div>
+
+<!-- Class selector -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/class_selector.jspf" %>
+
+<!-- add annotation modal -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/add_annotation.jspf" %>
+
+<!-- add object property assertion modal -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/add_object_property_assertion.jspf" %>
+
+<!-- add data property modal -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/add_data_property_assertion.jspf" %>
+
+<!-- add related individual modal -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/add_related_individual.jspf" %>
+
+<!-- clone user modal -->
+<%@ include file="/WEB-INF/pages/ontology/details/individual_modals/current_user_version/clone_modal.jspf" %>
+
+<script type="text/javascript">
+function loadCurrentUserIndividualVersion (currentUserVersionJSONData) {
+	var data = null;
+	
+	if(!currentUserVersionJSONData.isIndividualNull){
+		data = currentUserVersionJSONData.data
+	}
+	
+	var text = currentUserVersionJSONData.text;
+	var individualIRI = currentUserVersionJSONData.id;
+
+	// if the individual name is too long, rendering this name is ugly in indivudal hierarchy
+	//$('span#individualHierarchyName').text(text);
+	$('span#user_individualDescriptionName').text(text);
+
+  	$('#user_IDannotations').html('');
+  	$('#user_IDdescription').find('.list-group').html('');
+  	$('#user_propertyAssertions').find('.list-group').html('');
+
+  	// Reset badge numbers to be zero
+  	$('span#user_IDannotationBadge').text('0');
+  	$('span#user_typesBadge').text('0');
+  	$('span#user_objectPropAssertionBadge').text('0');
+  	$('span#user_negativeObjectPropAssertionBadge').text('0');
+  	$('span#user_dataPropAssertionBadge').text('0');
+  	$('span#user_negativeDataPropAssertionBadge').text('0');
+  	$('span#user_sameBadge').text('0');
+  	$('span#user_differentBadge').text('0');
+  	
+  	if(null != data){
+  		
+      	// Iterate annotation data
+  		$.each(data.annotations, function( index, value ) {
+  	  		// annotation data, id prefix, annotation index
+  			updateAnnotation(value, 'user_', index, true);
+		});
+
+      	// Reset individual type array
+  		individualTypes = [];
+
+      	// Types
+  		$.each(data.types, function( index, value ) {
+  			updateType(value, 'user_', index, true);
+		});
+      	
+      	// Same Individual as
+  		$.each(data.sameIndividuals, function( index, value ) {
+  			updateSameIndividual(value, 'user_', index, true);
+		});
+
+  		// Different individuals
+  		$.each(data.differentIndividuals, function( index, value ) {
+  			updateDifferentIndividual(value, 'user_', index, true);
+		});
+
+  		// Object Prop Assertion
+  		$.each(data.objectPropAssertions, function( index, value ) {
+  			updateOPA(value, 'user_', index, true);
+		});
+
+  		// Data Prop Assertion
+  		$.each(data.dataPropAssertions, function( index, value ) {
+  			updateDPA(value, 'user_', index, true);
+		});
+
+  		// Negative Object Prop Assertion
+  		$.each(data.negativeObjectPropAssertions, function( index, value ) {
+  			updateNOPA(value, 'user_', index, true);
+		});
+
+  		// Negative Data Prop Assertion
+  		$.each(data.negativeDataPropAssertions, function( index, value ) {
+  			updateNDPA(value, 'user_', index, true);
+		});
+	}
+}
+
+$(function(){
+	// Initialize bootstrap paginators for Object Property Assertion modal & same/different individuals selector modal
+    $('#opa_paginationUL').bootstrapPaginator(bootstrapPaginatorOptions);
+    $('#user_idvPaginationUL').bootstrapPaginator(bootstrapPaginatorOptions);
+    
+	var ontologyIdData = {"ontologyId" : ontologyId};
+
+	/********************************************************* OK Button Actions of all modals *******************************************/
+	// Class Selector OK Button action: Get all selected classes and add to types
+	$('#user_selectClassBtn').click(function(){
+		var selectedClasses = $('#user_classSelectorJsTree').jstree().get_selected(false);
+		var currentIndividual = getSelectedIndividualIRI();
+
+		if(selectedClasses.length != 0){
+			UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+			
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/addIndividualTypes",
+		        data: {
+		        	ontologyId: ontologyId,
+		        	selectedClassIds: selectedClasses.toString(),
+		        	currentIndividual: currentIndividual
+		        },
+		        dataType: "json",
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+			        var isSuccess = data.isSuccess;
+			        
+			        if(isSuccess){
+			        	UTIL.showMessage('<fmt:message key="request.succeeded" />', 'success');
+				    } else {
+				    	UTIL.showMessage('<fmt:message key="ontology.details.individual.class.selector.add.error.message" />', 'notice');	
+				    }
+				    
+		        	$('#user_classSelectorModal').modal('hide');
+
+					var indexNumber = $('#user_typesBody > div > span').length;
+
+		        	$.each (data.typeData, function (index, value) {
+		        		updateType(value, 'user_', indexNumber, true);
+		        		indexNumber++;
+		        	});
+		        },
+		        complete: function () {
+		        	UTIL.hideLoadingMask();
+		        }
+			});
+		} else {
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.class.selector.select.error.message" />', 'error');
+		}
+	});
+	////////////////////////////////////// End Class selector ok button //////////////////////////////////////////
+	
+	// Data Property selector ok button action
+	$('#user_dpOkBtn').click(function(){
+		var selectedDP = $('#user_dpSelectorJsTree').jstree().get_selected(false);
+		// if checkbox is checked => negative, else, non-negative
+		var isNegative = $('#user_isDPANegative').prop('checked');
+		var currentIndividual = getSelectedIndividualIRI();
+		
+		var dpLang = $.trim($('#user_dpLang').val());
+		var dpValue = $.trim($('#user_dpValue').val());
+
+		if(selectedDP.length === 0){
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.dp.selector.select.error.message" />', 'error');
+		} else {
+			UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+			
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/addIndividualDPA",
+		        data: {
+		        	ontologyId: ontologyId,
+		        	dataProperty: selectedDP.toString(),
+		        	isNegative: isNegative,
+		        	dpDatatype: selectedDPDatatype,
+		        	dpLanguage: dpLang,
+		        	dpValue: dpValue,
+		        	currentIndividual: currentIndividual
+		        },
+		        dataType: "json",
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+		        	UTIL.showMessage('<fmt:message key="request.succeeded" />', 'success');
+		        	$('#user_addIndividualDPAModal').modal('hide');
+
+		        	var indexNumber;
+		        	
+			        if(!isNegative){
+			        	indexNumber = $('#user_dataPropAssertionBody > div > span').length;
+			        	updateDPA(data.dpaData, 'user_', indexNumber, true);
+			        } else {
+			        	indexNumber = $('#user_negativeDataPropAssertionBody > div > span').length;
+			        	updateNDPA(data.dpaData, 'user_', indexNumber, true);
+			        }
+		        },
+		        complete: function () {
+		        	UTIL.hideLoadingMask();
+		        }
+			});
+		}
+	});
+
+	// Object Property Assertion selector ok button action
+	$('#user_opOkBtn').click(function(){
+		var selectedOP = $('#user_opSelectorJsTree').jstree().get_selected(false);
+		var selectedIndividual = getModalSelectedIndividualIRI();
+		
+		// if checkbox is checked => negative, else, non-negative
+		var isNegative = $('#user_isOPANegative').prop('checked');
+		var currentIndividual = getSelectedIndividualIRI();
+
+		if(selectedOP.length === 0){
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.op.selector.select.error.message" />', 'error');
+		} else if (selectedIndividual == '') {
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.idv.selector.select.error.message" />', 'error');
+		} else {
+			UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+			
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/addIndividualOPA",
+		        data: {
+		        	ontologyId: ontologyId,
+		        	selectedOP: selectedOP.toString(),
+		        	isNegative: isNegative,
+		        	selectedIdv: selectedIndividual,
+		        	currentIndividual: currentIndividual
+		        },
+		        dataType: "json",
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+			        if(data.isSuccess){
+			        	UTIL.showMessage('<fmt:message key="request.succeeded" />', 'success');
+			        	$('#user_addIndividualOPAModal').modal('hide');
+			        	
+			        	var indexNumber;
+			        	
+				        if(!isNegative){
+				        	indexNumber = $('#user_objectPropAssertionBody > div > span').length;
+				        	updateOPA(data.opaData, 'user_', indexNumber, true);
+				        } else {
+				        	indexNumber = $('#user_negativeObjectPropAssertionBody > div > span').length;
+				        	updateNOPA(data.opaData, 'user_', indexNumber, true);
+				        }
+			        } else {
+			        	UTIL.showMessage('<fmt:message key="ontology.details.individual.op.selector.add.error.message" />', 'error');
+			        }
+		        },
+		        complete: function () {
+		        	UTIL.hideLoadingMask();
+		        }
+			});
+		}
+	});
+
+	// Individual Selector ok button action
+	$('#user_idvOkBtn').click(function(){
+		// The individual is selected to view content
+		var currentIndividual = getSelectedIndividualIRI();
+
+		// The individual is selected in modal
+		var modalSelectedIndividual = getModalSelectedIndividualIRI();
+		
+		// if checkbox is checked => different, else, same individual
+		var isSameOrDifferent = $('#user_isDifferent').prop('checked');
+
+		if (modalSelectedIndividual == '') {
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.idv.selector.select.error.message" />', 'error');
+		} else if(currentIndividual == modalSelectedIndividual){
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.idv.selector.select.error.message2" />', 'error');
+		} else {
+			UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+			
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/addRelatedIndividual",
+		        data: {
+		        	ontologyId: ontologyId,
+		        	isSameOrDifferent: isSameOrDifferent,
+		        	selectedIdv: modalSelectedIndividual,
+		        	currentIndividual: currentIndividual
+		        },
+		        dataType: "json",
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+			        if(data.isSuccess){
+			        	UTIL.showMessage('<fmt:message key="request.succeeded" />', 'success');
+			        	$('#user_addRelatedIndividualModal').modal('hide');
+			        	
+			        	var indexNumber;
+			        	
+				        if(!isSameOrDifferent){
+				        	indexNumber = $('#user_sameBody > div > span').length;
+				        	updateSameIndividual(data.riData, 'user_', indexNumber, true);
+				        } else {
+				        	indexNumber = $('#user_differentBody > div > span').length;
+				        	updateDifferentIndividual(data.riData, 'user_', indexNumber, true);
+				        }
+			        } else {
+			        	UTIL.showMessage('<fmt:message key="ontology.details.individual.idv.selector.add.error.message" />', 'error');
+			        }
+		        },
+		        complete: function () {
+		        	UTIL.hideLoadingMask();
+		        }
+			});
+		}
+	});
+
+	// Annotation property selector ok button action
+	$('#user_annotationOkBtn').click(function(){
+		var selectedAnnoProp = $('#user_annotationSelectorJsTree').jstree().get_selected(false);
+		var currentIndividual = getSelectedIndividualIRI();
+
+		var annotationLang = $.trim($('#user_annotationLang').val());
+		var annotationValue = $.trim($('#user_annotationValue').val());
+		var annotationProperty = selectedAnnoProp.toString();
+
+		if(selectedAnnoProp.length != 0) {
+			UTIL.showLoadingMaskWithMessage('<fmt:message key="ontology.details.individual.loading.data.message"/>');
+			
+			$.ajax({
+				type: "POST",
+		        url: '${ctx}' + "/individual/addIndividualAnnotation",
+		        data: {
+		        	ontologyId: ontologyId,
+		        	annotationProperty: annotationProperty,
+		        	annotationDatatype: selectedAnnotationDatatype,
+		        	annotationLanguage: annotationLang,
+		        	annotationValue: annotationValue,
+		        	currentIndividual: currentIndividual
+		        },
+		        dataType: "json",
+		        error: function () {
+		        	UTIL.showMessage('<fmt:message key="errorPage.title" />', 'error');
+		        },
+		        success: function(data){
+		        	if(data.isSuccess){
+			        	$('#user_addIndividualAnnoModal').modal('hide');
+
+			        	// Calculate index number of an annotation to be appended
+			        	var index = $('#user_IDannotations > div').length;
+			        	updateAnnotation(data.annotationData, 'user_', index, true);
+			        	UTIL.showMessage('<fmt:message key="request.succeeded" />', 'success');
+			        } else {
+			        	UTIL.showMessage('<fmt:message key="ontology.details.individual.annotation.selector.add.error.message" />', 'error');
+			        }
+		        	
+		        },
+		        complete: function () {
+		        	UTIL.hideLoadingMask();
+		        }
+			});
+		} else {
+			UTIL.showMessage('<fmt:message key="ontology.details.individual.annotation.selector.select.error.message" />', 'error');
+		}
+	});
+	/****************************************************** End OK button action **********************************************/
+	
+	/********************************************* SHOW/HIDE Event of ALL Modals *************************************/
+	
+	/////////////////////// Related Individual Modal //////////////////////////////////////
+	$('#user_addRelatedIndividualModal').on('show.bs.modal', function (e) {
+
+		// Reset search input
+		$('#user_idvSelectorSearch').val('');
+
+		// Initialize class js tree
+		UTIL.initializeJsTree('#user_classSelectorModalJsTree', function(node) {return classHierarchyURL}, function(node) {return ontologyIdData}, null, function (){
+			var selectedClass = $('#user_classSelectorModalJsTree').jstree().get_selected(false);
+
+			if(selectedClass.length != 0){
+				selectedClass = selectedClass[0];
+			} else {
+				selectedClass = null;
+			}
+			
+			// Also reset selected individual (modal)
+			modalSelectedIndividual = '';
+				
+			// on select node, do search again for selected class
+			reloadUserIndividuals(loadingURL, 1, function (totalPages) {
+				reRenderUserPaginator(totalPages, null, function(e,oldPage,newPage){
+					reloadUserIndividuals(loadingURL, newPage, null, null, false, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv', selectedClass);
+	    	 	}, 1, '#user_idvPaginationUL');
+	        }, null, true, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv', selectedClass);
+	        
+		}, ["search", "sort"], false);
+	});
+
+	// After related individual modal has been rendered, load individual
+	$('#user_addRelatedIndividualModal').on('shown.bs.modal', function (e) {
+		// Reset modal values
+		modalSelectedIndividual = '';
+		reRenderUserPageSelector = true;
+
+		reloadUserIndividuals(loadingURL, 1, function (totalPages) {
+			reRenderUserPaginator(totalPages, null, function(e,oldPage,newPage){
+				reloadUserIndividuals(loadingURL, newPage, null, null, false, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv');
+    	 	}, 1, '#user_idvPaginationUL');
+        }, null, true, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv');
+	});
+
+	$('#user_addRelatedIndividualModal').on('hide.bs.modal', function (e) {
+		UTIL.destroyJsTree('#user_classSelectorModalJsTree');
+	});
+	/////////////////////// End Related Individual Modal //////////////////////////////////////////////
+	
+	/////////////////////// Object Property Assertion modal //////////////////////////////////////
+	$('#user_addIndividualOPAModal').on('show.bs.modal', function (e) {
+		UTIL.initializeJsTree('#user_opSelectorJsTree', function(node) {return opHierarchyURL}, function(node) {return ontologyIdData}, null, null, ["search", "sort"], false);
+	});
+
+	$('#user_addIndividualOPAModal').on('shown.bs.modal', function (e) {
+		// Reset modal values
+		modalSelectedIndividual = '';
+		reRenderUserPageSelector = true;
+
+		reloadUserIndividuals(loadingURL, 1, function (totalPages) {
+			reRenderUserPaginator(totalPages, null, function(e,oldPage,newPage){
+				reloadUserIndividuals(loadingURL, newPage, null, null, false, '#opa_individualPanel', '#opa_startIndex', '#opa_endIndex', '#opa_totalIndividuals', '#opa_pageSelector', '#opa_paginationDiv', '#opa_individualsUL', 'opa');
+    	 	}, 1, '#opa_paginationUL');
+        }, null, true, '#opa_individualPanel', '#opa_startIndex', '#opa_endIndex', '#opa_totalIndividuals', '#opa_pageSelector', '#opa_paginationDiv', '#opa_individualsUL', 'opa');
+	});
+
+	$('#user_addIndividualOPAModal').on('hide.bs.modal', function (e) {
+		UTIL.destroyJsTree('#user_opSelectorJsTree');
+	});
+	/////////////////////// End OPA modal //////////////////////////////////////////////
+
+	//////////////////////// Data Property Assertion modal ////////////////////////////
+	$('#user_addIndividualDPAModal').on('show.bs.modal', function (e) {
+		UTIL.initializeJsTree('#user_dpSelectorJsTree', function(node) {return dpHierarchyURL}, function(node) {return ontologyIdData}, null, null, ["search", "sort"], false);
+	});
+
+	// Destroy js tree & form fields
+	$('#user_addIndividualDPAModal').on('hide.bs.modal', function (e) {
+		UTIL.destroyJsTree('#user_dpSelectorJsTree');
+		$('#user_dpLang').val('');
+		$('#user_dpValue').val('');
+		$('#user_dpDatatype').select2('val', rdfPlainLiteralIRI);
+	});
+	
+	// { minimumResultsForSearch: Infinity }
+	$('#user_dpDatatype').select2({
+		placeholder: '<fmt:message key="ontology.details.individual.select.data.type"/>'
+	}).on('change', function(e){
+		// mostly used event, fired to the original element when the value changes
+		selectedDPDatatype = $(this).val();
+
+		if(selectedDPDatatype !== rdfPlainLiteralIRI){
+			$("#user_dpLang").val('');
+			$("#user_dpLang").prop('disabled', true);
+		} else {
+			$("#user_dpLang").prop('disabled', false);
+		}
+	});
+	
+	$('#user_dpDatatype').select2('val', rdfPlainLiteralIRI);
+	///////////////////////// End DPA modal //////////////////////////////////////////////
+	
+	///////////////////////// Annotation Assertion modal ///////////////////////////////////	
+	$('#user_addIndividualAnnoModal').on('show.bs.modal', function (e) {
+		UTIL.initializeJsTree('#user_annotationSelectorJsTree', function(node) {return annotationHierarchyURL}, function(node) {return ontologyIdData}, null, null, ["search", "sort"], false);
+	});
+
+	// Destroy js tree and also reset the form field
+	$('#user_addIndividualAnnoModal').on('hide.bs.modal', function (e) {
+		UTIL.destroyJsTree('#user_annotationSelectorJsTree');
+		$('#user_annotationLang').val('');
+		$('#user_annotationValue').val('');
+		$('#user_annotationDatatype').select2('val', rdfPlainLiteralIRI);
+	});
+
+	// { minimumResultsForSearch: Infinity }
+	$('#user_annotationDatatype').select2({
+		placeholder: '<fmt:message key="ontology.details.individual.select.data.type"/>'
+	}).on('change', function(e){
+		// mostly used event, fired to the original element when the value changes
+		selectedAnnotationDatatype = $(this).val();
+
+		if(selectedAnnotationDatatype !== rdfPlainLiteralIRI){
+			$("#user_annotationLang").val('');
+			$("#user_annotationLang").prop('disabled', true);
+		} else {
+			$("#user_annotationLang").prop('disabled', false);
+		}
+	});
+
+	// Set rdf plain literal as default selected option
+	$('#user_annotationDatatype').select2('val', rdfPlainLiteralIRI);
+	/////////////////////////////////////// End annotation //////////////////////////////////
+	
+	//////////////////////////////////////// Add individual moda /////////////////////////////////
+	// Reset add new individual form when there is a show/hide action of the modal
+	$('#user_addIndividualModal').on('show.bs.modal hide.bs.modal', function (e) {
+		resetAddIndividualForm();
+	});
+	/////////////////////////////////////// End individual modal ////////////////////////////////
+	
+	////////////////////////////////////// Class selector modal ////////////////////////////////////
+	// On show, initialize/load class js tree
+	$('#user_classSelectorModal').on('show.bs.modal', function (e) {
+		$('#user_classSelectorSearch').val('');
+		UTIL.initializeJsTree('#user_classSelectorJsTree', function(node) {return classHierarchyURL}, function(node) {return ontologyIdData}, function () {
+			var anchorArray = $('div#user_typesBody').find('a.owl-entity-short-form');
+			// deselect & disable thing class
+			$('#user_classSelectorJsTree').jstree().deselect_node('${iri}');
+			$('#user_classSelectorJsTree').jstree().disable_node('${iri}');
+			
+			// Disable classes that are already have in this individual
+			$.each(anchorArray, function(index, value) {
+				$('#user_classSelectorJsTree').jstree().disable_node(value.title);
+				//$('.jstree-disabled').addClass('cursor-not-allowed');
+ 			});
+			
+			//delete_node
+			//.get_node
+		}, null, ["search", "sort"], true);
+	});
+
+	// On hide, destroy class js tree
+	$('#user_classSelectorModal').on('hide.bs.modal', function (e) {
+		UTIL.destroyJsTree('#user_classSelectorJsTree');
+	});
+	////////////////////////////////////////// End class selector ///////////////////////////////
+	/************************************************ End SHOW/HIDE Event ********************************************************/
+	
+	/********************************** CHECKBOX Event of Object Property Assertion ***************************************/
+	// if normal object property assertion btn is clicked, set the checkbox to unchecked
+	$('#user_addIndividualOPABtn').click(function(){
+		$('#user_isOPANegative').prop('checked', false);
+	});
+
+	// else if negative opa btn is clicked, set the checkbox to checked
+	$('#user_addIndividualNOPABtn').click(function(){
+		$('#user_isOPANegative').prop('checked', true);
+	});
+	
+	// if normal data property assertion btn is clicked, set the checkbox to unchecked
+	$('#user_addIndividualDPABtn').click(function(){
+		$('#user_isDPANegative').prop('checked', false);
+	});
+
+	// else if negative dpa btn is clicked, set the checkbox to checked
+	$('#user_addIndividualNDPABtn').click(function(){
+		$('#user_isDPANegative').prop('checked', true);
+	});
+
+	$('#user_addSameIndividualBtn').click(function(){
+		$('#user_isDifferent').prop('checked', false);
+	});
+
+	$('#user_addDifferentIndividualBtn').click(function(){
+		$('#user_isDifferent').prop('checked', true);
+	});
+
+	/********************************** End CHECKBOX Event *********************************************/
+
+	/***************************************************************** Individial Lucene Search only MODALs ************************************************************************/
+	function reloadUserIndividuals(url, newPageNumber, reRenderPaginatorFunction, searchString, reRenderPageSelector, 
+								   blockElementId, startIndexId, endIndexId, totalIndividualsId, pageSelectorId, paginationDivId, individualsULId, idPrefix, selectedClass) {
+		   
+		if(selectedClass == null){
+			selectedClass = '${iri}';
+		}
+		
+		$.ajax({
+	        type: "GET",
+	        url: '${ctx}' + url,
+	        data: {
+	        	"classIRI" : selectedClass,
+	        	"pageNumber": newPageNumber,
+	        	"ontologyId" : ontologyId,
+	        	"searchString": searchString
+	        },
+	        dataType: "json",
+	        beforeSend: function () {
+	        	UTIL.blockElementWithMessage(blockElementId, 'Loading...');
+	        },
+	        error: function(){
+		        UTIL.showMessage('Error while loading individuals', 'error');
+	        },
+	        success: function(data){
+		        var totalPages = data.totalPages;
+		        var totalResults = data.totalResults;
+		        var itemsPerPage = data.itemsPerPage;
+
+		        var startIndex = data.startIndex;
+		        var endIndex = data.endIndex;
+		        
+		        var individualArray = data.individualArray;
+
+		        // Append individuals to individual-panel
+	        	processUserIndividualArray(individualArray, individualsULId, idPrefix);
+
+		        if(totalPages != 0 || startIndex <= endIndex){
+		        	// Display paginate details
+		        	$(startIndexId).text(' ' + startIndex + ' ');
+		        	$(endIndexId).text(' ' + endIndex + ' ');
+		        	$(totalIndividualsId).text(' ' + totalResults + ' ');
+
+	        	 	// Render paginator if the function is existed
+	        	 	if(reRenderPaginatorFunction){
+	        	 		reRenderPaginatorFunction(totalPages);
+	           	 	}
+
+	        	 	if(reRenderUserPageSelector){
+	        	 		// Clear page selector options
+	               	 	$(pageSelectorId).html('');
+	               	 	// Append pages into page selector
+	            	 	for (i = 1; i <= totalPages; i++) {
+	                	 	var option = $('<option/>');
+	                	 	option.attr('value', i);
+	                	 	option.text(i);
+
+	                	 	// Select the first page, that is page number 1
+	                	 	if(i == 1){
+	                	 		option.attr('selected', 'selected');
+	                   	 	}
+
+	                	 	$(pageSelectorId).append(option);
+	            	 	}
+	           	 	}
+
+	        	 	$(paginationDivId).removeClass('visibility-hidden');
+		        } else {
+		        	$(paginationDivId).addClass('visibility-hidden');
+		        }
+	        },
+	        complete: function () {
+	        	UTIL.unblockElement(blockElementId);
+	        }
+	    });
+	}
+
+	function processUserIndividualArray(data, individualsULId, idPrefix) {
+		$(individualsULId).html('');
+
+    	var arrayLength = data.length;
+
+        // Individual data array
+    	$.each(data, function(index, value) {
+        	var iri = value.iri;
+        	var shortFormIRI = value.shortFormIRI;
+
+        	var li = $(individualLiTemplate).clone();
+        	var a = li.find('a');
+        	
+			li.attr('id', idPrefix + iri);
+			a.attr('id', idPrefix + iri + '_anchor');
+			a.append(shortFormIRI);
+
+			// on click, add jstree-clicked class
+			a.bind('click', function(e){
+				// This is used to check what individual is selected (clicked)
+				modalSelectedIndividual = iri;
+				
+				if(a.hasClass('jstree-hovered')){
+					a.removeClass('jstree-hovered');
+				}
+				
+				$(individualsULId).find('a.jstree-clicked').removeClass('jstree-clicked');
+				a.addClass('jstree-clicked');
+  			});
+
+  			// on hover, add jstree-hovered class
+			a.hover(function(){
+				if(!a.hasClass('jstree-clicked') || !a.hasClass('jstree-hovered')){
+					a.addClass('jstree-hovered');
+				}
+  			});
+
+			// on mouseleave, remove jstree-hovered class
+			a.mouseleave(function(){
+				if(a.hasClass('jstree-hovered')){
+					a.removeClass('jstree-hovered');
+				}
+  			});
+
+			// array last element
+  			if(index == (arrayLength - 1)){
+  				li.addClass('jstree-last');
+  			}
+  			
+        	$(individualsULId).append(li);
+		});
+	}
+
+	// Rerender paginator options
+	function reRenderUserPaginator(totalPages, onPageClicked, onPageChanged, currentPage, paginationULId){
+		var bootstrapPaginatorOptions = {
+       		totalPages: totalPages,    	// Total number of pages
+       		onPageClicked: function(e,originalEvent,type,page){
+                if(onPageClicked){
+                	onPageClicked(e, originalEvent, type, page);
+                }
+            },
+   			onPageChanged: function(e,oldPage,newPage){
+   				modalSelectedIndividual = '';   	   			
+   	   			if(onPageChanged){
+   	   				onPageChanged(e,oldPage,newPage);
+	   	   		}
+            }
+     	}
+
+     	if(currentPage){
+         	bootstrapPaginatorOptions.currentPage = currentPage;
+        }
+
+        $(paginationULId).bootstrapPaginator(bootstrapPaginatorOptions);
+	}
+	/***************************************************************** END Individial Lucene Search only MODALs ************************************************************************/
+
+	/***************************************************************** Onchange SELECT Events only for select page of MODAL Boxes ************************************************************************/
+	// on change, trigger bootstrap paginator on change page event
+	$('#opa_pageSelector').on('change', function(){
+		onChangePageSelector('#opa_pageSelector', '#opa_paginationUL');
+	});
+
+	// on change, trigger bootstrap paginator on change page event
+	$('#user_idvPageSelector').on('change', function(){
+		onChangePageSelector('#user_idvPageSelector', '#user_idvPaginationUL');
+	});
+
+	function onChangePageSelector (pageSelectorId, paginationULId) {
+		// Onchange page, no need to reRender page selector
+		reRenderUserPageSelector = false;
+		var selectedPageNumber = $(pageSelectorId).val();
+		$(paginationULId).bootstrapPaginator("show", selectedPageNumber);
+
+		// Reset selected individual when there is a page changed event
+		modalSelectedIndividual = '';
+	}
+
+	/***************************************************************** End Onchange SELECT Events only for select page of MODAL Boxes ************************************************************************/
+
+	/***************************************************************** ON keyup EVENT for input searching  ************************************************************************/
+    $('#opa_individualSelectorSearch').keyup(function (e) {
+		onKeyUpSearch(e, '#opa_individualSelectorSearch', function (searchIndividualURL, searchString) {
+			
+			reloadUserIndividuals(searchIndividualURL, 1, function (totalPages) {
+   				reRenderUserPaginator(totalPages, null, function(e,oldPage,newPage){
+   					reloadUserIndividuals(searchIndividualURL, newPage, null, searchString, false, '#opa_individualPanel', '#opa_startIndex', '#opa_endIndex', '#opa_totalIndividuals', '#opa_pageSelector', '#opa_paginationDiv', '#opa_individualsUL', 'opa');
+   	    	 	}, 1, '#opa_paginationUL');
+   	        }, searchString, true, '#opa_individualPanel', '#opa_startIndex', '#opa_endIndex', '#opa_totalIndividuals', '#opa_pageSelector', '#opa_paginationDiv', '#opa_individualsUL', 'opa');
+   	        
+		});
+	});
+
+    $('#user_idvSelectorSearch').keyup(function (e) {
+		onKeyUpSearch(e, '#user_idvSelectorSearch', function (searchIndividualURL, searchString) {
+			
+			var selectedClass = $('#user_classSelectorModalJsTree').jstree().get_selected(false);
+
+			if(selectedClass.length != 0){
+				selectedClass = selectedClass[0];
+			} else {
+				selectedClass = null;
+			}
+
+			reloadUserIndividuals(searchIndividualURL, 1, function (totalPages) {
+				reRenderUserPaginator(totalPages, null, function(e,oldPage,newPage){
+					reloadUserIndividuals(searchIndividualURL, newPage, null, searchString, false, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv', selectedClass);
+	    	 	}, 1, '#user_idvPaginationUL');
+	        }, searchString, true, '#user_idvSelectorPanel', '#user_idvStartIndex', '#user_idvEndIndex', '#user_idvTotalIndividuals', '#user_idvPageSelector', '#user_idvPaginationDiv', '#user_idvsUL', 'idv', selectedClass);
+		});
+	});
+
+	function onKeyUpSearch (e, searchInputId, reloadUserIndividualFunction) {
+		var code = e.keyCode || e.which;
+		
+		if(code == 13) { //Enter keycode
+			if(checkTimeout) { clearTimeout(checkTimeout); }
+    	    
+   	       	checkTimeout = setTimeout(function () {
+				// Reset selected individual when user is doing searching
+   	       		modalSelectedIndividual = '';
+   	       		
+   	        	var searchString = $.trim($(searchInputId).val());
+	        	var searchIndividualURL = searchURL;
+	        	
+	        	if(searchString === ''){
+	        		searchIndividualURL = loadingURL;
+	        		searchString = null;
+	        	}
+
+	        	if(reloadUserIndividualFunction){
+	        		reloadUserIndividualFunction(searchIndividualURL, searchString);
+	        	}
+	        	
+   	       	}, 400); 
+    	 }
+	}
+    /***************************************************************** END ON keyup EVENT for input searching  ************************************************************************/
+
+
+    $('#currentUserCloneBtn');
+});
+</script>

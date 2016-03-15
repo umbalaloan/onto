@@ -1,0 +1,272 @@
+<!-- The page layout is divided into 2 divs: navigation (3/12) and description (9/12) -->
+<!-- anno prop navigation/hierarchy -->
+<div class="col-sm-3" id="annoPropNavigation">
+	<div class="panel panel-success panel-annoprop-custom" id="annoPropNavigationParentPanel">
+        <div class="panel-heading panel-annoprop-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#annoPropPanel" href="#annoPropPanel">
+		          <fmt:message key="ontology.details.annoProp.hierarchy.x">
+		          	<fmt:param value="Annotation properties"/>
+		          </fmt:message>
+		        </a>
+		        
+		        <i class="fa fa-refresh btn refresh-icon" id="apTabRefreshIcon" title="<fmt:message key="ontology.details.refresh.title"/>"></i>
+      		</h4>
+
+        </div>
+        <div id="annoPropPanel" class="panel-collapse collapse in">
+            <div id="annoPropJstree" class="panel-body"></div>
+        </div>
+    </div>
+</div>
+
+<!-- anno prop description -->
+<div class="col-sm-9" id="annoPropContent">
+	<div class="panel panel-success panel-annoprop-custom" id="annoPropDescriptionParentPanel">
+		<!-- class description panel heading -->
+        <div class="panel-heading panel-annoprop-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#annoPropDescriptionPanel" href="#annoPropDescriptionPanel">
+		          <fmt:message key="ontology.annoProp.description.for.x">
+		          	<fmt:param value="Annotation properties"/>
+		          </fmt:message>
+		        </a>
+      		</h4>
+        </div>
+        
+        <!-- panel body -->
+        <div id="annoPropDescriptionPanel" class="panel-collapse collapse in">
+        	<div class="panel-body">
+        	
+        		<!-- Display name -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.displayName" />
+						</label>
+						<input class="form-control" name="annoPropDisplayName" value="${APdisplayName}" id="annoPropDisplayName" disabled/>
+					</div>
+				</div>
+				
+				<!--  IRI  -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.iri" />
+						</label>
+						<input class="form-control" name="annoPropIRI" value="${APiri}" id="annoPropIRI" disabled/>
+					</div>
+				</div>
+				
+				<!-- Annotations -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.annotations" />
+							&nbsp;&nbsp;
+							<span class="badge" id="annoPropAnnotationBadge">0</span>
+						</label>
+						<div id="annoPropAnnotations"></div>
+					</div>
+				</div>
+				
+				<!-- Description -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.description" />
+						</label>
+						<div id="annoPropDescription">
+							
+							<!-- Domains (intersection) -->
+							<div class="panel-group" id="apDomainsAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#apDomainsAccordion" href="#apDomainsBody">
+													<fmt:message key="ontology.details.description.domains" />
+													<span class="badge" id="APdomainsBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+											
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="apDomainsBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!--Ranges (intersection) -->
+							<div class="panel-group" id="apRangesAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#apRangesAccordion" href="#apRangesBody">
+													<fmt:message key="ontology.details.description.ranges" />
+													<span class="badge" id="APrangesBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="apRangesBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Super properties -->
+							<div class="panel-group" id="superPropertiesAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#superProperties" href="#superPropertiesBody">
+													<fmt:message key="ontology.details.description.superProperties" />
+													<span class="badge" id="superPropertiesBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="superPropertiesBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- End Description-->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	// Refresh tree data code
+	$('#apTabRefreshIcon').click(function(){
+		UTIL.showPopupConfirm(confirmDialog, refreshDataConfirmMessage, ['Yes', 'No'], function(index){
+			if(index == 0){
+				$('#apTabRefreshIcon').addClass('fa-spin');
+				UTIL.reloadJSTreeData('#annoPropJstree', apJstreeRootURL, 'GET', ontologyId, null, reloadSuccessMessage, function(){
+					$('#apTabRefreshIcon').removeClass('fa-spin');
+				});
+			}
+		}, ['btn-primary', 'btn-default']);
+	});
+	
+	$('#annotationProperties').click(function(){
+
+		if(!annoPropLoaded){
+
+			UTIL.initializeJsTree ('#annoPropJstree', function (node){ // loading URL
+				return node.id === '#' ? apJstreeRootURL : apJstreeChildrenURL;
+			}, function (node){ // data parameters
+				if(node.id === '#'){
+	   	        	return { "id" : node.id, "ontologyId" : ontologyId };
+	   	        } else {
+	   	        	return { "id" : node.data.nodeId, "ontologyId" : ontologyId };
+	   	        }
+			}, null, function(node, selected, e){
+				try {
+					var selectedNode = selected.node;
+					var data = selectedNode.data;
+			
+					$('span#annoPropHierarchyName').text(selectedNode.text);
+					$('span#annoPropDescriptionName').text(selectedNode.text);
+			  		$('#annoPropDisplayName').val(selectedNode.text);
+			      	$('#annoPropIRI').val(selectedNode.data.nodeId);
+			      	
+			      	$('#annoPropAnnotations').html('');
+			      	$('#annoPropDescription').find('.list-group').html('');
+			      	
+			      	if(null != data){
+			          	// annotationBadge
+			          	try {
+			          		$('span#annoPropAnnotationBadge').text(selectedNode.data.annotations.length);
+			          	} catch (e) {
+			          		$('span#annoPropAnnotationBadge').text('0');
+			          	}
+			          	
+			      		$.each(selectedNode.data.annotations, function( index, value ) {
+			      			var annotationDiv = $(annotationTemplate).clone();
+			      			var accordionParentId = 'APannotationId_' + index + 'Accordion';
+			      			var accordionBodyId = 'APannotationId_' + index + 'AccordionBody';
+			      			
+			      			annotationDiv.attr('id', accordionParentId);
+			      			annotationDiv.find('.accordion-toggle.color-black').attr('data-parent', '#' + accordionParentId);
+			      			annotationDiv.find('.accordion-toggle.color-black').attr('href', '#' + accordionBodyId);
+			      			annotationDiv.find('.panel-collapse.collapse.in').attr('id', accordionBodyId);
+			      			
+			      			annotationDiv.find('.annotationName').append(value.annotationName);
+			      			
+			      			if(value.isRDFPlainLiteral == true){
+			      				var language = value.annotationLanguage;
+			      				
+			      				if(language !== ''){
+			      					annotationDiv.find('.annotationLanguage').text('[language: ' + language + ']');
+			      				}
+			      			} else {
+			      				annotationDiv.find('.annotationDatatype').text('[type: ' + value.annotationDatatype + ']');
+			      			}
+			      			
+			      			annotationDiv.find('.list-group').append($(listGroupItemTemplate).clone().append(value.annotationValue));
+			      			
+			 			  		$('#annoPropAnnotations').append(annotationDiv);
+		     			});
+			
+			      		// Domains
+			          	$('span#APdomainsBadge').text(selectedNode.data.domains.length);
+			      		$.each(selectedNode.data.domains, function( index, value ) {
+			      			APdomainsListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-circle class-color"></i>  ' + value.domainString));
+		     			});
+			
+			      		// Ranges
+			      		$('span#APrangesBadge').text(selectedNode.data.ranges.length);
+			      		$.each(selectedNode.data.ranges, function( index, value ) {
+			      			APrangesListGroup.append( $(listGroupItemTemplate).clone().append(value.rangeString));
+		     			});
+			
+			      		// Super Properties
+			      		$('span#superPropertiesBadge').text(selectedNode.data.superProperties.length);
+			      		$.each(selectedNode.data.superProperties, function( index, value ) {
+			      			superPropertiesListGroup.append( $(listGroupItemTemplate).clone().append('<i class="fa fa-square ap-class"></i>  ' + value.superProperty));
+		     			});
+			
+			      	}
+	 			} catch (e) {
+					console.log('Root node \'Annotation Properties\' is not yet implemented to be displayed.');
+	 			}
+			}, [], false);
+		}
+
+		annoPropLoaded = true;
+	});
+});
+</script>

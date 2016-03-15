@@ -1,0 +1,377 @@
+<!-- The page layout is divided into 2 divs: navigation (3/12) and description (9/12) -->
+<!-- data prop navigation/hierarchy -->
+<div class="col-sm-3" id="dataPropNavigation">
+	<div class="panel panel-success panel-dataprop-custom" id="dataPropNavigationParentPanel">
+        <div class="panel-heading panel-dataprop-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#dataPropPanel" href="#dataPropPanel">
+		          <fmt:message key="ontology.details.dataProp.hierarchy.x">
+		          	<fmt:param value="topDataProperty"/>
+		          </fmt:message>
+		        </a>
+		        
+		        <i class="fa fa-refresh btn refresh-icon" id="dpTabRefreshIcon" title="<fmt:message key="ontology.details.refresh.title"/>"></i>
+      		</h4>
+
+        </div>
+        <div id="dataPropPanel" class="panel-collapse collapse in">
+            <div id="dataPropJstree" class="panel-body"></div>
+        </div>
+    </div>
+</div>
+
+<!-- data prop description -->
+<div class="col-sm-9" id="dataPropContent">
+	<div class="panel panel-success panel-dataprop-custom" id="dataPropDescriptionParentPanel">
+		<!-- class description panel heading -->
+        <div class="panel-heading panel-dataprop-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#dataPropDescriptionPanel" href="#dataPropDescriptionPanel">
+		          <fmt:message key="ontology.dataProp.description.for.x">
+		          	<fmt:param value="topDataProperty"/>
+		          </fmt:message>
+		        </a>
+      		</h4>
+        </div>
+        
+        <!-- panel body -->
+        <div id="dataPropDescriptionPanel" class="panel-collapse collapse in">
+        	<div class="panel-body">
+        	
+        		<!-- Display name -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.displayName" />
+						</label>
+						<input class="form-control" name="dataPropDisplayName" value="${DPdisplayName}" id="dataPropDisplayName" disabled/>
+					</div>
+				</div>
+				
+				<!--  IRI  -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.iri" />
+						</label>
+						<input class="form-control" name="dataPropIRI" value="${DPiri}" id="dataPropIRI" disabled/>
+					</div>
+				</div>
+				
+				<!-- Annotations -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.annotations" />
+							&nbsp;&nbsp;
+							<span class="badge" id="dataPropAnnotationBadge">0</span>
+						</label>
+						<!-- <input class="form-control" name="annotations"/> -->
+						<div id="dataPropAnnotations"></div>
+					</div>
+				</div>
+				
+				<!-- Description -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.description" />
+						</label>
+						<div id="dataPropDescription">
+							
+							<!-- Equivalent to -->
+							<div class="panel-group" id="dpEquivalentToAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dpEquivalentToAccordion" href="#dpEquivalentToBody">
+													<fmt:message key="ontology.details.description.equivalentto" />
+													<span class="badge" id="DPequivalentToBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="dpEquivalentToBody">
+										<!-- <div class="panel-body">
+											N/A
+										</div> -->
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- SubProperty Of -->
+							<div class="panel-group" id="dpSubPropertyOfAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dpSubPropertyOfAccordion" href="#dpSubPropertyOfBody">
+													<fmt:message key="ontology.details.description.subPropertyOf" />
+													<span class="badge" id="DPsubPropertyOfBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+											
+											<%-- <a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#subPropertyOfAccordion" href="#subPropertyOfBody">
+												<fmt:message key="ontology.details.properties.subPropertyOf" />
+												&nbsp;
+												<span class="badge" id="subPropertyOfBadge">0</span>
+											</a> --%>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="dpSubPropertyOfBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Domains (intersection) -->
+							<div class="panel-group" id="dpDomainsAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dpDomainsAccordion" href="#dpDomainsBody">
+													<fmt:message key="ontology.details.description.domains" />
+													<span class="badge" id="DPdomainsBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+											
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="dpDomainsBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!--Ranges (intersection) -->
+							<div class="panel-group" id="dpRangesAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dpRangesAccordion" href="#dpRangesBody">
+													<fmt:message key="ontology.details.description.ranges" />
+													<span class="badge" id="DPrangesBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="dpRangesBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Disjoint With -->
+							<div class="panel-group" id="dpDisjointWithAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#dpDisjointWithAccordion" href="#dpDisjointWithBody">
+													<fmt:message key="ontology.details.description.disjointWith" />
+													<span class="badge" id="DPdisjointWithBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="dpDisjointWithBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- End Description-->
+						</div>
+					</div>
+				</div>
+				
+				<!-- Characteristics -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.characteristics" />
+						</label>
+						<div id="DPcharacteristics">
+							<input name="DPfunctional" id="DPfunctional" type="checkbox" />&nbsp;<fmt:message key="ontology.details.object.property.functional" /><br/>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	// Refresh tree data code
+	$('#dpTabRefreshIcon').click(function(){
+		UTIL.showPopupConfirm(confirmDialog, refreshDataConfirmMessage, ['Yes', 'No'], function(index){
+			if(index == 0){
+				$('#dpTabRefreshIcon').addClass('fa-spin');
+				UTIL.reloadJSTreeData('#dataPropJstree', dpJstreeRootURL, 'GET', ontologyId, null, reloadSuccessMessage, function(){
+					$('#dpTabRefreshIcon').removeClass('fa-spin');
+				});
+			}
+		}, ['btn-primary', 'btn-default']);
+	});
+	
+	$('#dataProperties').click(function(){
+
+		if(!dataPropLoaded){
+
+			// Initialize jstree instance
+			UTIL.initializeJsTree ('#dataPropJstree', function (node) { // loading URL
+				 return node.id === '#' ? dpJstreeRootURL : dpJstreeChildrenURL;
+			}, function (node) { // data parameters
+				if(node.id === '#'){
+	 	        	return { "id" : node.id, "ontologyId" : ontologyId };
+	 	        } else {
+	 	        	return { "id" : node.data.nodeId, "ontologyId" : ontologyId };
+	 	        }
+			}, null, function(node, selected, e){ // On node selection event
+				try {
+					var selectedNode = selected.node;
+					var data = selectedNode.data;
+				
+					$('span#dataPropHierarchyName').text(selectedNode.text);
+					$('span#dataPropDescriptionName').text(selectedNode.text);
+					$('#dataPropDisplayName').val(selectedNode.text);
+				  	$('#dataPropIRI').val(selectedNode.data.nodeId);
+				  	
+				  	$('#dataPropAnnotations').html('');
+				  	$('#dataPropDescription').find('.list-group').html('');
+				  	
+				  	if(null != data){
+				      	// annotationBadge
+				      	try {
+				      		$('span#dataPropAnnotationBadge').text(selectedNode.data.annotations.length);
+				      	} catch (e) {
+				      		$('span#dataPropAnnotationBadge').text('0');
+							console.log(e);
+				      	}
+				      	
+				  		$.each(selectedNode.data.annotations, function( index, value ) {
+				  			var annotationDiv = $(annotationTemplate).clone();
+				  			var accordionParentId = 'DPannotationId_' + index + 'Accordion';
+				  			var accordionBodyId = 'DPannotationId_' + index + 'AccordionBody';
+				  			
+				  			annotationDiv.attr('id', accordionParentId);
+				  			annotationDiv.find('.accordion-toggle.color-black').attr('data-parent', '#' + accordionParentId);
+				  			annotationDiv.find('.accordion-toggle.color-black').attr('href', '#' + accordionBodyId);
+				  			annotationDiv.find('.panel-collapse.collapse.in').attr('id', accordionBodyId);
+				  			
+				  			annotationDiv.find('.annotationName').append(value.annotationName);
+				  			
+				  			if(value.isRDFPlainLiteral == true){
+				  				var language = value.annotationLanguage;
+				  				
+				  				if(language !== ''){
+				  					annotationDiv.find('.annotationLanguage').text('[language: ' + language + ']');
+				  				}
+				  			} else {
+				  				annotationDiv.find('.annotationDatatype').text('[type: ' + value.annotationDatatype + ']');
+				  			}
+				  			
+				  			annotationDiv.find('.list-group').append($(listGroupItemTemplate).clone().append(value.annotationValue));
+				  			
+					  		$('#dataPropAnnotations').append(annotationDiv);
+			 			});
+				
+				      	// Equivalent property
+				      	$('span#DPequivalentToBadge').text(selectedNode.data.equivalentTo.length);
+				  		$.each(selectedNode.data.equivalentTo, function( index, value ) {
+				  			OPequivalentToListGroup.append($(listGroupItemTemplate).clone().append(value.equivalentToString));
+			 			});
+				      	
+				      	// SubProperty Of
+				      	$('span#DPsubPropertyOfBadge').text(selectedNode.data.subPropertyOf.length);
+				  		$.each(selectedNode.data.subPropertyOf, function( index, value ) {
+				  			DPsubPropertyOfListGroup.append( $(listGroupItemTemplate).clone().append(value.superProperty));
+			 			});
+				
+				  		// Domains
+				      	$('span#DPdomainsBadge').text(selectedNode.data.domains.length);
+				  		$.each(selectedNode.data.domains, function( index, value ) {
+				  			var domainString = value.domainString;
+
+				  			if(!value.isAnonymous){
+				  				domainString = '<i class="fa fa-circle class-color"></i>  ' + domainString;
+				  			}
+				  			
+				  			DPdomainsListGroup.append( $(listGroupItemTemplate).clone().append(domainString));
+			 			});
+				
+				  		// Ranges
+				  		$('span#DPrangesBadge').text(selectedNode.data.ranges.length);
+				  		$.each(selectedNode.data.ranges, function( index, value ) {
+				  			DPrangesListGroup.append( $(listGroupItemTemplate).clone().append(value.rangeString));
+			 			});
+				
+				  		// Disjoint With
+				  		$('span#DPdisjointWithBadge').text(selectedNode.data.disjointWith.length);
+				  		$.each(selectedNode.data.disjointWith, function( index, value ) {
+				  			DPdisjointWithListGroup.append( $(listGroupItemTemplate).clone().append(value.disjointWithString));
+			 			});
+				
+			 			var characteristicInputs = $('#DPcharacteristics').find('input');
+				 			
+							// characteristics
+				  		$.each(selectedNode.data.characteristics, function( index, value ) {
+				      		// Reset checkbox
+				      		$(characteristicInputs[index]).prop('checked', false);
+				
+							// Object.keys(value)[0] = key name, e.g. isFunctional, isInverseFunctional, etc.
+							// value[Object.keys(value)[0]] = value of key, e.g. true, false
+				      		if(value[Object.keys(value)[0]]){
+				      			$(characteristicInputs[index]).prop('checked', true);
+				      		}
+				  			
+			 			});
+			  		}
+			  	} catch (e) {
+					console.log('Error: topDataProperty is not yet implemented to be displayed.');
+				}
+			}, [], false);
+		}
+
+		dataPropLoaded = true;
+	});
+});
+</script>

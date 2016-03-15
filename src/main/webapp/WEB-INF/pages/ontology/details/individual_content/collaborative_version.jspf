@@ -1,0 +1,201 @@
+<!-- Display name -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.displayName" />
+		</label>
+		<input class="form-control" name="collab_IDdisplayName" value="" id="collab_IDdisplayName" disabled/>
+	</div>
+</div>
+
+<!--  IRI  -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label">
+			<fmt:message key="ontology.details.iri" />
+		</label>
+		<input class="form-control" name="collab_IDiri" value="" id="collab_IDiri" disabled/>
+	</div>
+</div>
+
+<!-- Annotations -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-12">
+		<label class="control-label full-width">
+			<fmt:message key="ontology.details.annotations" />
+			&nbsp;
+			<span class="badge pull-right annotation-badge" id="collab_IDannotationBadge" title='<fmt:message key="ontology.details.individual.annotation.badge.title"/>'>0</span>
+		</label>
+		<div id="collab_IDannotations"></div>
+	</div>
+</div>
+
+<!-- Description -->
+<div class="form-group form-group-sm">
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.description" />
+		</label>
+		<div id="collab_IDdescription">
+			
+			<!-- Types -->
+			<div class="panel-group" id="collab_typesAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_typesAccordion" href="#collab_typesBody">
+									<fmt:message key="ontology.details.description.types" />
+									<span class="badge" id="collab_typesBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_typesBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Same individual as -->
+			<div class="panel-group" id="collab_sameAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_sameAccordion" href="#collab_sameBody">
+									<fmt:message key="ontology.details.description.same" />
+									<span class="badge" id="collab_sameBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_sameBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- different individuals -->
+			<div class="panel-group" id="collab_differentAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_differentAccordion" href="#collab_differentBody">
+									<fmt:message key="ontology.details.description.different" />
+									<span class="badge" id="collab_differentBadge">0</span>
+								</a>
+							</span>
+							
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_differentBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+	
+	<div class="col-sm-6">
+		<label class="control-label">
+			<fmt:message key="ontology.details.property.assertions" />
+		</label>
+		<div id="collab_propertyAssertions">
+			
+			<!-- object property assertions -->
+			<div class="panel-group" id="collab_objectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_objectPropAssertionAccordion" href="#collab_objectPropAssertionBody">
+									<fmt:message key="ontology.details.object.property.assertions" />
+									<span class="badge" id="collab_objectPropAssertionBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_objectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- data property assertions -->
+			<div class="panel-group" id="collab_dataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_dataPropAssertionAccordion" href="#collab_dataPropAssertionBody">
+									<fmt:message key="ontology.details.data.property.assertions" />
+									<span class="badge" id="collab_dataPropAssertionBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_dataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative object property assertions -->
+			<div class="panel-group" id="collab_negativeObjectPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_negativeObjectPropAssertionAccordion" href="#collab_negativeObjectPropAssertionBody">
+									<fmt:message key="ontology.details.negative.object.property.assertions" />
+									<span class="badge" id="collab_negativeObjectPropAssertionBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_negativeObjectPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- negative data property assertions -->
+			<div class="panel-group" id="collab_negativeDataPropAssertionAccordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<span>
+								<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#collab_negativeDataPropAssertionAccordion" href="#collab_negativeDataPropAssertionBody">
+									<fmt:message key="ontology.details.negative.data.property.assertions" />
+									<span class="badge" id="collab_negativeDataPropAssertionBadge">0</span>
+								</a>
+							</span>
+						</h4>
+					</div>
+					<div class="panel-collapse collapse in" id="collab_negativeDataPropAssertionBody">
+						<div class="list-group">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- End Description-->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function loadCollaborativeIndividualVersion () {
+
+}
+</script>

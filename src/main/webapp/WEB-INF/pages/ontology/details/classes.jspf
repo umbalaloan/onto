@@ -1,0 +1,417 @@
+<!-- The page layout is divided into 2 divs: navigation (3/12) and description (9/12) -->
+<!-- class navigation/hierarchy -->
+<div class="col-sm-3" id="ontologyNavigation">
+	<div class="panel panel-warning panel-classes-custom" id="navigationParentPanel">
+        <div class="panel-heading panel-classes-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#jsTreePanel" href="#jsTreePanel">
+		          <fmt:message key="ontology.details.class.hierarchy.x">
+		          	<fmt:param value="owl:Thing"/>
+		          </fmt:message>
+		        </a>
+		        
+		        <i class="fa fa-refresh btn refresh-icon" id="classesTabRefreshIcon" title="<fmt:message key="ontology.details.refresh.title"/>"></i>
+      		</h4>
+
+        </div>
+        <div id="jsTreePanel" class="panel-collapse collapse in">
+            <div id="jstree" class="panel-body"></div>
+        </div>
+    </div>
+</div>
+
+<!-- class description -->
+<div class="col-sm-9" id="ontologyContent">
+	<div class="panel panel-warning panel-classes-custom" id="classDescriptionParentPanel">
+		<!-- class description panel heading -->
+        <div class="panel-heading panel-classes-heading">
+             <h4 class="panel-title">
+		        <a data-toggle="collapse" data-target="#classDescriptionPanel" href="#classDescriptionPanel">
+		          <fmt:message key="ontology.description.for.x">
+		          	<fmt:param value="owl:Thing"/>
+		          </fmt:message>
+		        </a>
+      		</h4>
+        </div>
+        
+        <!-- panel body -->
+        <div id="classDescriptionPanel" class="panel-collapse collapse in">
+        	<div class="panel-body">
+        	
+        		<!-- Display name -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.displayName" />
+						</label>
+						<input class="form-control" name="displayName" value="${displayName}" id="displayName" disabled/>
+					</div>
+				</div>
+				
+				<!--  IRI  -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.iri" />
+						</label>
+						<input class="form-control" name="iri" value="${iri}" id="iri" disabled/>
+					</div>
+				</div>
+				
+				<!-- Annotations -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.annotations" />
+							&nbsp;&nbsp;
+							<span class="badge" id="annotationBadge">0</span>
+						</label>
+						<!-- <input class="form-control" name="annotations"/> -->
+						<div id="annotations"></div>
+					</div>
+				</div>
+				
+				<!-- Description -->
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12">
+						<label class="control-label">
+							<fmt:message key="ontology.details.description" />
+						</label>
+						<div id="description">
+							
+							<!-- Equivalent to -->
+							<div class="panel-group" id="equivalentToAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#equivalentToAccordion" href="#equivalentToBody">
+													<fmt:message key="ontology.details.description.equivalentto" />
+													<span class="badge" id="equivalentToBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="equivalentToBody">
+										<!-- <div class="panel-body">
+											N/A
+										</div> -->
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- SubClass Of -->
+							<div class="panel-group" id="subClassOfAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#subClassOfAccordion" href="#subClassOfBody">
+													<fmt:message key="ontology.details.description.subclassof" />
+													<span class="badge" id="subClassOfBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+											
+											<%-- <a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#subClassOfAccordion" href="#subClassOfBody">
+												<fmt:message key="ontology.details.properties.subclassof" />
+												&nbsp;
+												<span class="badge" id="subClassOfBadge">0</span>
+											</a> --%>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="subClassOfBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- SubClass Of (Anonymous Ancestor) -->
+							<%-- <div class="panel-group" id="subClassOfAnonymousAncestorAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#subClassOfAnonymousAncestorAccordion" href="#subClassOfAnonymousAncestorBody">
+													<fmt:message key="ontology.details.description.subclassof.anonymousAncestor" />
+													<span class="badge" id="subClassOfAnonymousAncestorBadge">0</span>
+												</a>
+												<a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a>
+											</span>
+											
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="subClassOfAnonymousAncestorBody">
+										<div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div> --%>
+							
+							<!-- Members -->
+							<div class="panel-group" id="membersAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#membersAccordion" href="#membersBody">
+													<fmt:message key="ontology.details.description.members" />
+													<span class="badge" id="membersBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+											
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="membersBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Target for key -->
+							<div class="panel-group" id="targetForKeyAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#targetForKeyAccordion" href="#targetForKeyBody">
+													<fmt:message key="ontology.details.description.targetForKey" />
+													<span class="badge" id="targetForKeyBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="targetForKeyBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Disjoint With -->
+							<div class="panel-group" id="disjointWithAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#disjointWithAccordion" href="#disjointWithBody">
+													<fmt:message key="ontology.details.description.disjointWith" />
+													<span class="badge" id="disjointWithBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="disjointWithBody">
+										<%-- <div class="panel-body">
+											<button><fmt:message key="button.add"/></button>
+										</div> --%>
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Disjoint Union Of -->
+							<div class="panel-group" id="disjointUnionOfAccordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span>
+												<a class="accordion-toggle color-black" data-toggle="collapse" data-parent="#disjointUnionOfAccordion" href="#disjointUnionOfBody">
+													<fmt:message key="ontology.details.description.disjointUnionOf" />
+													<span class="badge" id="disjointUnionOfBadge">0</span>
+												</a>
+												<!-- <a href="#addNewEquivalentClasses" class="btn btn-sm btn-success btn-circle">
+													<i class="fa fa-plus"></i>
+												</a> -->
+											</span>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" id="disjointUnionOfBody">
+										<div class="list-group">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End Description-->
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+	// Refresh tree data code
+	$('#classesTabRefreshIcon').click(function(){
+		UTIL.showPopupConfirm(confirmDialog, refreshDataConfirmMessage, ['Yes', 'No'], function(index){
+			if(index == 0){
+				$('#classesTabRefreshIcon').addClass('fa-spin');
+				UTIL.reloadJSTreeData('#jstree', classesTabURL, 'GET', ontologyId, '${iri}', reloadSuccessMessage, function(){
+					$('#classesTabRefreshIcon').removeClass('fa-spin');
+				});
+			}
+		}, ['btn-primary', 'btn-default']);
+	});
+
+	// Initialize jstree instance
+	UTIL.initializeJsTree('#jstree', function(node){return classesTabURL}, function (node) {
+		// First attempt to load data from the server
+  		if(node.id === '#'){
+        	return { "id" : '${iri}', "ontologyId" : ontologyId };
+     	// Later attempts to load data from the server
+        } else {
+        	return { "id" : node.data.nodeId, "ontologyId" : ontologyId };
+        }
+	}, function(e, data) { // on loaded jstree instance event
+		// Hard-coded click action to Thing class to be the first displayed class
+		//$('#j1_1_anchor').trigger('click');
+		$('#jstree').jstree().select_node('${iri}');
+	}, function(node, selected, e){ // On select node event
+			var selectedNode = selected.node;
+			var data = selectedNode.data;
+		
+			$('span#classHierarchyName').text(selectedNode.text);
+			$('span#classDescriptionName').text(selectedNode.text);
+			$('#displayName').val(selectedNode.text);
+			$('#iri').val(selectedNode.data.nodeId);
+			
+			$('#annotations').html('');
+			$('#description').find('.list-group').html('');
+			
+			if(null != data){
+		  	// Annotations	annotationBadge
+		  	try {
+		  		$('span#annotationBadge').text(selectedNode.data.annotations.length);
+		  	} catch (e) {
+		  		$('span#annotationBadge').text(0);
+				console.log(e);
+		  	}
+		  	
+			$.each(selectedNode.data.annotations, function( index, value ) {
+				var annotationDiv = $(annotationTemplate).clone();
+				var accordionParentId = 'annotationId_' + index + 'Accordion';
+				var accordionBodyId = 'annotationId_' + index + 'AccordionBody';
+				
+				annotationDiv.attr('id', accordionParentId);
+				annotationDiv.find('.accordion-toggle.color-black').attr('data-parent', '#' + accordionParentId);
+				annotationDiv.find('.accordion-toggle.color-black').attr('href', '#' + accordionBodyId);
+				annotationDiv.find('.panel-collapse.collapse.in').attr('id', accordionBodyId);
+				
+				annotationDiv.find('.annotationName').append(value.annotationName);
+				
+				if(value.isRDFPlainLiteral == true){
+					var language = value.annotationLanguage;
+					
+					if(language !== ''){
+						annotationDiv.find('.annotationLanguage').append('[language: ' + language + ']');
+					}
+				} else {
+					annotationDiv.find('.annotationDatatype').append('[type: ' + value.annotationDatatype + ']');
+				}
+				
+				annotationDiv.find('.list-group').append($(listGroupItemTemplate).clone().append(value.annotationValue));
+				
+			  		$('#annotations').append(annotationDiv);
+			});
+		
+		  	// Equivalent Class
+		  	$('span#equivalentToBadge').text(selectedNode.data.equivalentClasses.length);
+			$.each(selectedNode.data.equivalentClasses, function( index, value ) {
+				var equivalentClass = value.equivalentClass;
+				
+				if(!value.isAnonymous){
+					equivalentClass = '<i class="fa fa-circle class-color"></i>  ' + equivalentClass;
+				}
+				
+				equivalentToListGroup.append($(listGroupItemTemplate).clone().append(equivalentClass));
+			});
+		  	
+		  	// SubClass Of
+		  	$('span#subClassOfBadge').text(selectedNode.data.superClasses.length);
+			$.each(selectedNode.data.superClasses, function( index, value ) {
+				var superClass = value.superClass;
+				
+				if(!value.isAnonymous){
+					superClass = '<i class="fa fa-circle class-color"></i>  ' + superClass;
+				}
+				
+				subClassOfListGroup.append( $(listGroupItemTemplate).clone().append(superClass));
+			});
+		
+			// disjointWith
+		  	$('span#disjointWithBadge').text(selectedNode.data.disjointWith.length);
+			$.each(selectedNode.data.disjointWith, function( index, value ) {
+				var disjointClass = value.disjointClass;
+				
+				if(!value.isAnonymous){
+					disjointClass = '<i class="fa fa-circle class-color"></i>  ' + disjointClass;
+				}
+				disjointWithListGroup.append( $(listGroupItemTemplate).clone().append(disjointClass));
+			});
+		
+			// disjointUnionOf
+		  	$('span#disjointUnionOfBadge').text(selectedNode.data.disjointUnionOf.length);
+			$.each(selectedNode.data.disjointUnionOf, function( index, value ) {
+	
+				var disjointClass = value.disjointClass;
+				
+				if(!value.isAnonymous){
+					disjointClass = '<i class="fa fa-circle class-color"></i>  ' + disjointClass;
+				}
+				
+				disjointUnionOfListGroup.append( $(listGroupItemTemplate).clone().append(value.disjointClass));
+			});
+		
+			// targetForKey
+		  	$('span#targetForKeyBadge').text(selectedNode.data.targetForKey.length);
+			$.each(selectedNode.data.targetForKey, function( index, value ) {
+				targetForKeyListGroup.append( $(listGroupItemTemplate).clone().append(value.key));
+			});
+		
+			// members
+		  	//$('span#membersBadge').text(selectedNode.data.members.length);
+		  	$('span#membersBadge').text(selectedNode.data.members[0].numberOfIndividuals);
+			/* $.each(selectedNode.data.members, function( index, value ) {
+				membersListGroup.append( $(listGroupItemTemplate).clone().append('<i class="diamond-icon individual-color"></i>  ' + value.invididual));
+			}); */
+			
+		}
+	}, ["search", "state"], false);
+		
+});
+</script>

@@ -1,0 +1,67 @@
+<div class="modal fade" id="addIndividualOPAModal">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog vertical-align-center width-60vw">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<fmt:message key="ontology.details.opa" />
+					</h4> 
+				</div>
+				<div class="modal-body">
+					<!-- <p>
+						<fmt:message key="ontology.details.individual.annotation.selector.select.message" />
+					</p> -->
+					
+					<input name="isOPANegative" id="isOPANegative" type="checkbox" class="display-none"/><!-- &nbsp;<fmt:message key="ontology.details.is.object.property.assertion.negative" /> -->
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="panel panel-default">
+						        <div class="panel-heading">
+						             <h4 class="panel-title">
+								        <a data-toggle="collapse" data-target="#opSelectorJsTreePanel" href="#opSelectorJsTreePanel">
+							          		<fmt:message key="ontology.details.properties.object"/>
+								        </a>
+						      		</h4>
+						        </div>
+						        
+						        <div id="opSelectorJsTreePanel" class="panel-collapse collapse in modal-jstree">
+						            <div id="opSelectorJsTree" class="panel-body"></div>
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-sm-6">
+							<div class="panel panel-default">
+						        <div class="panel-heading">
+						             <h4 class="panel-title">
+								        <a data-toggle="collapse" data-target="#individualSelectorJsTreePanel" href="#individualSelectorJsTreePanel">
+							          		<fmt:message key="ontology.details.individual.selector"/>
+								        </a>
+						      		</h4>
+						        </div>
+						        
+						        <div id="individualSelectorJsTreePanel" class="panel-collapse collapse in modal-jstree">
+						        	<form class="navbar-form">
+						        		<input type="text" class="form-control full-width" id="individualSelectorSearch" placeholder="Search individuals...">
+						        	</form>
+						            <div id="individualSelectorJsTree" class="panel-body"></div>
+						        </div>
+						    </div>
+						</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="opOkBtn"><fmt:message key="button.ok" /></button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="button.cancel" /></button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
